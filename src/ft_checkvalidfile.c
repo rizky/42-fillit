@@ -25,5 +25,20 @@ int	ft_checkvalidfile(int fd)
 	bf = (char *)malloc(sizeof(char) * BUFFER_SZ + 1);
 	ret = (char **)malloc(sizeof(char *) * 4);
 	reader = read(fd, bf, BUFFER_SZ);
+	while (reader)
+	{
+		//TODO: check for each \n found...
+	}
+	return 0;
+}
+
+int main()
+{
+	int fd = 0;
+
+	fd = open("tetris", O_RDONLY);
+	if (fd == -1)
+		exit(0);
+	ft_checkvalidfile(fd);
 	return 0;
 }
