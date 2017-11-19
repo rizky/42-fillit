@@ -1,29 +1,46 @@
-.PHONY: all clean re clean proper
+NAME= fillit
 
-CC := gcc
-# CFLAGS := -Wall -Werror -Wextra
-CFLAGS : =
-NAME := fillit
-SRC := main.c
-OBJ := main.o
-HEADERS = -I includes/
+SRC=	main.c
+OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))
+
+CC= gcc
+CFLAGS= -Wall -Wextra -Werror
+
+LIBFT= ./libft/libft.a
+LIBINC= -I./libft
 LIBLINK= -L./libft -lft
+
+SRCDIR= ./src/
+INCDIR= ./includes/
+OBJDIR= ./obj/
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) -o $(NAME) $(LIBLINK) $^ $(HEADERS)
+obj:
+	mkdir -p $(OBJDIR)
 
-%.o : src/%.c
-	$(CC) $(CFLAGS) -c $< $(HEADERS)
+$(OBJDIR)%.o:$(SRCDIR)%.c
+	# $(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+	$(CC) $(LIBINC) -I $(INCDIR) -o $@ -c $<
 
-clean:
-	@/bin/rm -f $(OBJ)
+libft: $(LIBFT)
 
-fclean: clean
-	@/bin/rm -f $(NAME)
+$(LIBFT):
+	make -C ./libft
+
+$(NAME): obj libft $(OBJ) 
+	$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
+
+remlib:
+	rm -rf $(LIBFT)
+
+remoblib:
+	make fclean -C ./libft/
+
+clean: remoblib
+	rm -rf $(OBJDIR)
+
+fclean: clean remlib
+	rm -rf $(NAME)
 
 re: fclean all
-
-debug:
-	@gcc -g src/*.c $(HEADERS)
