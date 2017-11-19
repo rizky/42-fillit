@@ -1,4 +1,4 @@
-#include "libft.h"
+#include "../libft/libft.h"
 #include <fcntl.h>
 #define BUF_SIZE 600
 
@@ -52,65 +52,77 @@ int	ft_isvalid(int argc, char *argv)
 	return (1);
 }
 
-int		put_tetriminos(int board[6][6],t_list tetriminos, t_list solutions, int min_dim)
+int		tetr_len(char **tetr)
 {
-	t_list *t;
-	if(ft_lstlen(solutions) == ft_lstlen(tetriminos) && ft_dimension(board) = ft_min_dim(tetriminos))
-		return (1);
-	t = tetriminos;
-	while (t)
+	char	*ptr;
+	int		len;
+
+	ptr = tetr;
+	len = 0;
+	while (tetr[len])
+		len++;
+}
+
+int		put_tetriminos(int **board, char **tetr, int min_dim)
+{
+	int i;
+
+	i = 0;
+	while (tetr[i])
 	{
-		if (ft_is_available(board, solutions, min_dim, row, col))
-		t = t->next;
+
 	}
+}
+
+void	print_board(int **board, int nrow, int ncol)
+{
+	int row;
+	int col;
+
+	row = 0;
+	while (row < nrow)
+	{
+		col = 0;
+		while (col < ncol)
+		{
+			ft_putstr(ft_itoa(0));
+			col++;
+		}
+		ft_putchar('\n');
+		row++;
+	}
+}
+
+int		**init_board(int size)
+{
+	int **board;
+
+	board = (int **)malloc(sizeof(*board) * size);
+	int i = 0;
+	int j = 0;
+	while (i < size)
+	{
+		j = 0;
+		board[i] = (int *)malloc(sizeof(**board) * size);
+		while (j < size)
+		{
+			board[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return (board);
 }
 
 int		main(int argc, char **argv)
 {
-	int t1[4][4] =
-	{
-		{1, 1, 0, 0},
-		{0, 1, 0, 0},
-		{0, 1, 0, 0},
-		{0, 0, 0, 0}
-	};
-	int t2[4][4] =
-	{
-		{1, 1, 1, 1},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0}
-	};
-	int t2[4][4] =
-	{
-		{1, 0, 0, 0},
-		{1, 1, 1, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0}
-	};
-	int t3[4][4] =
-	{
-		{1, 1, 0, 0},
-		{0, 1, 1, 0},
-		{0, 0, 0, 0},
-		{0, 0, 0, 0},
-	};
+	char	*tetr_str = ">vv >>> v>> >v>";
+	char	**tetr = ft_strsplit(tetr_str, ' ');
 
-	t_list *tetriminos;
-	tetriminos->content = t1;
-	tetriminos->next->content = t2;
-	tetriminos->next->next->content = t3;
-	tetriminos->next->next->next->content = t4;
-	tetriminos->next->next->next->next = NULL;
+	int **board;
 
-	int board[6][6] = {
-		{0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0},
-		{0, 0, 0, 0, 0, 0}
-	}
+	board = init_board(6);
+	print_board(board, 6, 6);
 
 	return (0);
 }

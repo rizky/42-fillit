@@ -54,3 +54,4 @@ dkms.conf
 /fillit.en.pdf
 /README.md
 /tetris
+*.DS_Store
