@@ -55,3 +55,6 @@ dkms.conf
 /README.md
 /tetris
 *.DS_Store
+/CMakeLists.txt
+/cmake-build-debug/
+/.idea

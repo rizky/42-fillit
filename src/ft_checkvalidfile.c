@@ -16,18 +16,23 @@
 
 int	ft_checkvalidfile(int fd)
 {
+	int nlines;
 	ssize_t reader;
 	char *bf;
 	char **ret;
 
+	nlines = 0;
 	if (fd == -1)
 		exit(0);
 	bf = (char *)malloc(sizeof(char) * BUFFER_SZ + 1);
 	ret = (char **)malloc(sizeof(char *) * 4);
 	reader = read(fd, bf, BUFFER_SZ);
-	while (reader)
+	while (reader && nlines <=4)
 	{
-		//TODO: check for each \n found...
+		if (*reader == '\n')
+			nlines++;
+		if (*reader ==)
+		//TODO: use a "compass" to understand how to put the arrows... ^v><
 	}
 	return 0;
 }
