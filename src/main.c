@@ -134,7 +134,7 @@ int		max_square(char **tetrs)
 	int max;
 
 	len = tetrlen(tetrs);
-	
+	return (0);
 }
 
 void	arrange_tetrs(int ***board, char **tetrs, int min_dim)
@@ -152,7 +152,7 @@ void	arrange_tetrs(int ***board, char **tetrs, int min_dim)
 			col = 0;
 			while (col < 6)
 			{
-				if (is_put_tetr(&(*board), tetrs[i], row, col))
+				if (is_put_tetr(&(*board), tetrs[i], row, col, 6))
 				{
 					put_tetr(&(*board), tetrs[i], row, col, i);
 					col = 100;
