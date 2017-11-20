@@ -58,3 +58,8 @@ dkms.conf
 /CMakeLists.txt
 /cmake-build-debug/
 /.idea
+
+42_fillit
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
