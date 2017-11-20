@@ -52,28 +52,6 @@ int	ft_isvalid(int argc, char *argv)
 	return (1);
 }
 
-int		tetr_len(char **tetr)
-{
-	char	*ptr;
-	int		len;
-
-	ptr = tetr;
-	len = 0;
-	while (tetr[len])
-		len++;
-}
-
-int		put_tetriminos(int **board, char **tetr, int min_dim)
-{
-	int i;
-
-	i = 0;
-	while (tetr[i])
-	{
-
-	}
-}
-
 void	print_board(int **board, int nrow, int ncol)
 {
 	int row;
@@ -85,11 +63,68 @@ void	print_board(int **board, int nrow, int ncol)
 		col = 0;
 		while (col < ncol)
 		{
-			ft_putstr(ft_itoa(0));
+			ft_putstr(ft_itoa(board[row][col]));
 			col++;
 		}
 		ft_putchar('\n');
 		row++;
+	}
+}
+
+int		is_put_tetr(int ***board, char *tetr, int row, int col, int val)
+{
+	int i;
+
+	i = 0;
+	if (*board)[row][col] == 1)
+		return (0);
+	while (i < ft_strlen(tetr))
+	{
+		if (tetr[i] == '>')
+			col++;
+		if (tetr[i] == '<')
+			col--;
+		if (tetr[i] == 'v')
+			row++;
+		if (tetr[i] == '^')
+			row--;
+		if (*board)[row][col] == 1)
+			return (0);
+		i++;
+	}
+	return (1)
+}
+
+void	put_tetr(int ***board, char *tetr, int row, int col, int val)
+{
+	int i;
+
+	i = 0;
+	(*board)[row][col] = 1;
+	while (i < ft_strlen(tetr))
+	{
+		if (tetr[i] == '>')
+			col++;
+		if (tetr[i] == '<')
+			col--;
+		if (tetr[i] == 'v')
+			row++;
+		if (tetr[i] == '^')
+			row--;
+		(*board)[row][col] = 1;
+		i++;
+	}
+}
+
+void		arrange_tetr(int ***board, char **tetr, int min_dim)
+{
+	int i;
+
+	i = 0;
+	while (tetr[i])
+	{
+		put_tetr(&(*board), tetr[i], 0, 0, i);
+		i++;
 	}
 }
 
@@ -123,6 +158,7 @@ int		main(int argc, char **argv)
 
 	board = init_board(6);
 	print_board(board, 6, 6);
-
+	arrange_tetr(&board, tetr, 100);
+	print_board(board, 6, 6);
 	return (0);
 }
