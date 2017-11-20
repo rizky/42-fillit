@@ -203,7 +203,38 @@ int		is_exist(int **board, int index, int max)
 	return (0);
 }
 
-int		arrange_tetrs(int ***board, char **tetrs, int *index, int min_dim)
+int		board_dim(int **board, int max)
+{
+	int i;
+	int j;
+	int h;
+	int v;
+
+	i = 0;
+	j = 0;
+	h = 0;
+	v = 0;
+	while (i < max)
+	{
+		j = h;
+		while (j < max)
+		{
+			if (board[i][j] != 0)
+			{
+				h = j;
+				v = i;
+			}
+			j++;
+		}
+		i++;
+	}
+	if (v >= h)
+		return (v);
+	else
+		return (h);
+}
+
+int		arrange_tetrs(int ***board, char **tetrs, int *index, int *min_dim)
 {
 	int i;
 	int row;
@@ -221,7 +252,11 @@ int		arrange_tetrs(int ***board, char **tetrs, int *index, int min_dim)
 		{
 			put_tetr(&(*board), tetrs[i], row, col, i + 1);
 			*index = *index + 1;
-			if (arrange_tetrs(&(*board), tetrs, index, 6))
+			if (board_dim(*board, 6) > *min_dim)
+				return (0);
+			else
+				*min_dim = board_dim(*board, 6);
+			if (arrange_tetrs(&(*board), tetrs, index, min_dim))
 			{
 				print_board((*board), 6, 6);
 				ft_putchar('\n');
@@ -262,9 +297,10 @@ int		main(int argc, char **argv)
 
 	int **board;
 	int index;
+	int min_dim;
 
 	board = init_board(6);
 	index = 0;
-	arrange_tetrs(&board, tetrs, &index, 100);
+	arrange_tetrs(&board, tetrs, &index, &min_dim);
 	return (0);
 }
