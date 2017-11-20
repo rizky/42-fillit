@@ -217,7 +217,7 @@ int		arrange_tetrs(int ***board, char **tetrs, int index, int min_dim)
 	col = 0;
 	while (tetrs[i])
 	{
-		if (find_loc(&(*board), tetrs[i], &row, &col, 6) && !is_exist((*board), index, 6))
+		if (!is_exist((*board), i, 6) && find_loc(&(*board), tetrs[i], &row, &col, 6))
 		{
 			put_tetr(&(*board), tetrs[i], row, col, i);
 			if (arrange_tetrs(&(*board), tetrs, index + 1, 6))
