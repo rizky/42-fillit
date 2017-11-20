@@ -88,7 +88,7 @@ int		is_put_tetr(int ***board, char *tetr, int row, int col, int max)
 			row++;
 		if (tetr[i] == '^')
 			row--;
-		if (row >= max || col >= max)
+		if (row >= max || col >= max || row < 0 || col < 0)
 			return (0);
 		if ((*board)[row][col] != 0)
 			return (0);
@@ -137,33 +137,99 @@ int		max_square(char **tetrs)
 	return (0);
 }
 
-void	arrange_tetrs(int ***board, char **tetrs, int min_dim)
+int		find_loc(int ***board, char *tetr, int *row, int *col, int max)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < max)
+	{
+		j = 0;
+		while (j < max)
+		{
+			if (is_put_tetr(&(*board), tetr, i, j, 6))
+			{
+				*row = i;
+				*col = j;
+				return (1);	
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+void rem_tetr(int ***board, int val, int max)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < max)
+	{
+		j = 0;
+		while (j < max)
+		{
+			if ((*board)[i][j] == val)
+				(*board)[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+}
+
+int		is_exist(int **board, int index, int max)
+{
+	int i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (i < max)
+	{
+		j = 0;
+		while (j < max)
+		{
+			if (board[i][j] == index)
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
+}
+
+int		arrange_tetrs(int ***board, char **tetrs, int index, int min_dim)
 {
 	int i;
 	int row;
 	int col;
 
+	if (index == 6)
+		return (1);
+
 	i = 0;
+	row = 0;
+	col = 0;
 	while (tetrs[i])
 	{
-		row = 0;
-		while (row < 6)
+		if (find_loc(&(*board), tetrs[i], &row, &col, 6) && !is_exist((*board), index, 6))
 		{
-			col = 0;
-			while (col < 6)
+			put_tetr(&(*board), tetrs[i], row, col, i);
+			if (arrange_tetrs(&(*board), tetrs, index + 1, 6))
 			{
-				if (is_put_tetr(&(*board), tetrs[i], row, col, 6))
-				{
-					put_tetr(&(*board), tetrs[i], row, col, i);
-					col = 100;
-					row = 100;
-				}
-				col++;
+				print_board((*board), 6, 6);
 			}
-			row++;
+			index--;
+			rem_tetr(&(*board), i, 6);
 		}
 		i++;
 	}
+	return (0);
 }
 
 int		**init_board(int size)
@@ -195,7 +261,6 @@ int		main(int argc, char **argv)
 	int **board;
 
 	board = init_board(6);
-	arrange_tetrs(&board, tetrs, 100);
-	print_board(board, 6, 6);
+	arrange_tetrs(&board, tetrs, 1, 100);
 	return (0);
 }
