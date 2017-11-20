@@ -71,12 +71,12 @@ void	print_board(int **board, int nrow, int ncol)
 	}
 }
 
-int		is_put_tetr(int ***board, char *tetr, int row, int col, int val)
+int		is_put_tetr(int ***board, char *tetr, int row, int col, int max)
 {
 	int i;
 
 	i = 0;
-	if (*board)[row][col] == 1)
+	if ((*board)[row][col] != 0)
 		return (0);
 	while (i < ft_strlen(tetr))
 	{
@@ -88,11 +88,13 @@ int		is_put_tetr(int ***board, char *tetr, int row, int col, int val)
 			row++;
 		if (tetr[i] == '^')
 			row--;
-		if (*board)[row][col] == 1)
+		if (row >= max || col >= max)
+			return (0);
+		if ((*board)[row][col] != 0)
 			return (0);
 		i++;
 	}
-	return (1)
+	return (1);
 }
 
 void	put_tetr(int ***board, char *tetr, int row, int col, int val)
@@ -100,7 +102,7 @@ void	put_tetr(int ***board, char *tetr, int row, int col, int val)
 	int i;
 
 	i = 0;
-	(*board)[row][col] = 1;
+	(*board)[row][col] = val;
 	while (i < ft_strlen(tetr))
 	{
 		if (tetr[i] == '>')
@@ -111,19 +113,55 @@ void	put_tetr(int ***board, char *tetr, int row, int col, int val)
 			row++;
 		if (tetr[i] == '^')
 			row--;
-		(*board)[row][col] = 1;
+		(*board)[row][col] = val;
 		i++;
 	}
 }
 
-void		arrange_tetr(int ***board, char **tetr, int min_dim)
+int		tetrlen(char **tetr)
+{
+	int len;
+
+	len = 0;
+	while (tetr[len])
+		len++;
+	return (len);
+}
+
+int		max_square(char **tetrs)
+{
+	int len;
+	int max;
+
+	len = tetrlen(tetrs);
+	
+}
+
+void	arrange_tetrs(int ***board, char **tetrs, int min_dim)
 {
 	int i;
+	int row;
+	int col;
 
 	i = 0;
-	while (tetr[i])
+	while (tetrs[i])
 	{
-		put_tetr(&(*board), tetr[i], 0, 0, i);
+		row = 0;
+		while (row < 6)
+		{
+			col = 0;
+			while (col < 6)
+			{
+				if (is_put_tetr(&(*board), tetrs[i], row, col))
+				{
+					put_tetr(&(*board), tetrs[i], row, col, i);
+					col = 100;
+					row = 100;
+				}
+				col++;
+			}
+			row++;
+		}
 		i++;
 	}
 }
@@ -151,14 +189,13 @@ int		**init_board(int size)
 
 int		main(int argc, char **argv)
 {
-	char	*tetr_str = ">vv >>> v>> >v>";
-	char	**tetr = ft_strsplit(tetr_str, ' ');
+	char	*tetr_str = ">vv >>> v>> >v> >>> vvv";
+	char	**tetrs = ft_strsplit(tetr_str, ' ');
 
 	int **board;
 
 	board = init_board(6);
-	print_board(board, 6, 6);
-	arrange_tetr(&board, tetr, 100);
+	arrange_tetrs(&board, tetrs, 100);
 	print_board(board, 6, 6);
 	return (0);
 }
