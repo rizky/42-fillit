@@ -51,9 +51,6 @@ Module.symvers
 Mkfile.old
 dkms.conf
 /fillit
-/fillit.en.pdf
-/README.md
-/tetris
 *.DS_Store
 /CMakeLists.txt
 /cmake-build-debug/
