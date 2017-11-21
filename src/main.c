@@ -282,7 +282,7 @@ int		**init_board(int size)
 
 int		main(int argc, char **argv)
 {
-	char	*tetr_str = "vvv vv> vvv vv> vvv vv> vvv vv> vvv vv> vvv";
+	char	*tetr_str = "vvv vv> vvv vv> vvv vv> vvv vv> vvv vv>";
 	char	**tetrs = ft_strsplit(tetr_str, ' ');
 
 	int **board;
