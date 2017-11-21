@@ -52,16 +52,16 @@ int	ft_isvalid(int argc, char *argv)
 	return (1);
 }
 
-void	print_board(int **board, int nrow, int ncol)
+void	print_board(int **board, int square_size)
 {
 	int row;
 	int col;
 
 	row = 0;
-	while (row < nrow)
+	while (row < square_size)
 	{
 		col = 0;
-		while (col < ncol)
+		while (col < square_size)
 		{
 			if (board[row][col] != 0)
 				ft_putchar(board[row][col] + 'A' - 1);
@@ -131,15 +131,6 @@ int		tetrlen(char **tetrs)
 	return (len);
 }
 
-int		max_square(char **tetrs)
-{
-	int len;
-	int max;
-
-	len = tetrlen(tetrs);
-	return (9);
-}
-
 int		find_loc(int ***board, char *tetr, int *row, int *col, int max)
 {
 	int i;
@@ -162,7 +153,7 @@ int		find_loc(int ***board, char *tetr, int *row, int *col, int max)
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 void rem_tetr(int ***board, int val, int max)
@@ -237,40 +228,31 @@ int		board_dim(int **board, int max)
 		return (h);
 }
 
-int		arrange_tetrs(int ***board, char **tetrs, int *index, int *min_dim)
+int		arrange_tetrs(int ***board, char **tetrs, int *index, int square_size)
 {
 	int i;
 	int row;
 	int col;
-	int max;
 
-	max = max_square(tetrs);
 	if (*index == tetrlen(tetrs))
-	{
-		if (board_dim(*board, max) < *min_dim)
-			*min_dim = board_dim(*board, max);
 		return (1);
-	}
-
 	i = 0;
 	row = 0;
 	col = 0;
-	while (tetrs[i])
+	while (i < tetrlen(tetrs))
 	{
-		if (!is_exist((*board), i + 1, max) && find_loc(&(*board), tetrs[i], &row, &col, max))
+		if (!is_exist((*board), i + 1, square_size) && find_loc(&(*board), tetrs[i], &row, &col, square_size))
 		{
 			put_tetr(&(*board), tetrs[i], row, col, i + 1);
-			if (board_dim(*board, max) < *min_dim)
+			*index = *index + 1;
+			if (arrange_tetrs(&(*board), tetrs, index, square_size))
 			{
-				*index = *index + 1;
-				if (arrange_tetrs(&(*board), tetrs, index, min_dim))
-				{
-					print_board((*board), max, max);
-					ft_putchar('\n');
-				}
-				*index = *index - 1;
-				rem_tetr(&(*board), i + 1, max);
+				print_board((*board), square_size);
+				ft_putchar('\n');
+				return (1);
 			}
+			*index = *index - 1;
+			rem_tetr(&(*board), i + 1, square_size);
 		}
 		i++;
 	}
@@ -300,16 +282,24 @@ int		**init_board(int size)
 
 int		main(int argc, char **argv)
 {
-	char	*tetr_str = "vvv >v< >^v> vvv vvv >v< >^v> vvv vvv >v< >^v> vvv vvv >v< >^v> vvv vvv >v< >^v> vvv ";
+	char	*tetr_str = "vvv vv> vvv vv> vvv vv> vvv vv> vvv vv> vvv";
 	char	**tetrs = ft_strsplit(tetr_str, ' ');
 
 	int **board;
 	int index;
-	int min_dim;
+	int success;
+	int square_size;
 
-	board = init_board(max_square(tetrs));
 	index = 0;
-	min_dim = 9999;
-	arrange_tetrs(&board, tetrs, &index, &min_dim);
+	square_size = 2;
+	while (success == 0)
+	{
+		board = init_board(square_size);
+		success = arrange_tetrs(&board, tetrs, &index, square_size);
+		ft_putchar(success + '0');
+		ft_putchar('\n');
+		square_size++;
+		ft_memdel ((void **)board);
+	}
 	return (0);
 }
