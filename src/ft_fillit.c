@@ -1,4 +1,3 @@
-#include "../libft/libft.h"
 #include "../includes/fillit.h"
 
 void	print_board(int **board, int square_size)
