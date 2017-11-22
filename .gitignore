@@ -57,8 +57,5 @@ dkms.conf
 /.idea
 
 42_fillit
-CMakeCache.txt
-CMakeFiles/
-cmake_install.cmake
 .vscode
 launch.json
