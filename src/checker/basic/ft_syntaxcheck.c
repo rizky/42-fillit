@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
+/*   ft_syntaxcheck.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arizzell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/19 18:35:58 by arizzell          #+#    #+#             */
-/*   Updated: 2017/11/19 18:36:00 by arizzell         ###   ########.fr       */
+/*   Created: 2017/11/22 13:29:48 by arizzell          #+#    #+#             */
+/*   Updated: 2017/11/22 13:29:49 by arizzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#include "../../../includes/fillit.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include "libft.h"
+int	ft_syntaxcheck(const char *bf)
+{
+	int index;
 
-int	ft_validfile(char *filestr);
-int	ft_syntaxcheck(const char *bf);
-
-#endif
+	index = 0;
+	while (bf[index])
+	{
+		if (bf[index] != '.' && bf[index] != '#' && bf[index] != '\n')
+			return (1);
+		index++;
+	}
+	return (0);
+}
