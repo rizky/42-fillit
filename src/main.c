@@ -228,14 +228,18 @@ int		board_dim(int **board, int max)
 		return (h);
 }
 
-int		arrange_tetrs(int ***board, char **tetrs, int *index, int square_size)
+int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
 {
 	int i;
 	int row;
 	int col;
 
-	if (*index == tetrlen(tetrs))
+	if (index == tetrlen(tetrs))
+	{
+		print_board((*board), square_size);
+		ft_putchar('\n');
 		return (1);
+	}
 	i = 0;
 	row = 0;
 	col = 0;
@@ -244,14 +248,8 @@ int		arrange_tetrs(int ***board, char **tetrs, int *index, int square_size)
 		if (!is_exist((*board), i + 1, square_size) && find_loc(&(*board), tetrs[i], &row, &col, square_size))
 		{
 			put_tetr(&(*board), tetrs[i], row, col, i + 1);
-			*index = *index + 1;
-			if (arrange_tetrs(&(*board), tetrs, index, square_size))
-			{
-				print_board((*board), square_size);
-				ft_putchar('\n');
+			if (arrange_tetrs(&(*board), tetrs, index + 1, square_size))
 				return (1);
-			}
-			*index = *index - 1;
 			rem_tetr(&(*board), i + 1, square_size);
 		}
 		i++;
@@ -282,22 +280,18 @@ int		**init_board(int size)
 
 int		main(int argc, char **argv)
 {
-	char	*tetr_str = "vvv vv> vvv vv> vvv vv> vvv vv> vvv vv>";
+	char	*tetr_str = "vvv vv> vvv vv> vvv vv> vvv vv> vvv vv> vv>";
 	char	**tetrs = ft_strsplit(tetr_str, ' ');
 
 	int **board;
-	int index;
 	int success;
 	int square_size;
 
-	index = 0;
 	square_size = 2;
 	while (success == 0)
 	{
 		board = init_board(square_size);
-		success = arrange_tetrs(&board, tetrs, &index, square_size);
-		ft_putchar(success + '0');
-		ft_putchar('\n');
+		success = arrange_tetrs(&board, tetrs, 0, square_size);
 		square_size++;
 		ft_memdel ((void **)board);
 	}
