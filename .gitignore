@@ -55,7 +55,6 @@ dkms.conf
 /CMakeLists.txt
 /cmake-build-debug/
 /.idea
-
 42_fillit
 .vscode
 launch.json
