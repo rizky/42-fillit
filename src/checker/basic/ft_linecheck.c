@@ -22,8 +22,12 @@ int	ft_linecheck(const char *bf)
 	while(bf[index])
 	{
 		if (bf[index] == '\n' && charead != 3)
+			return (1);
+		else
+			charead = 0;
+		if (bf[index] == '\n' && bf[index+1] == '\n')
 			return (0);
-		
 		index++;
 	}
+	return (1);
 }
