@@ -30,5 +30,6 @@ LL0000000
 ```
 
 Andrea:
-- ft_basicheck(input bufftetrim) --> check the presence of other char different from (.  #  \n)
-- ft_validfile(input pathtofile) --> check if the file is present and readable
+- **ft_basicheck**(input bufftetrim) --> check the presence of other char different from (.  #  \n)
+- **ft_validfile**(input pathtofile) --> check if the file is present and readable
+- **ft_linecheck**(input bufftetrim) --> check if the tetriminos block is valid
