@@ -5,7 +5,7 @@ Algorithm:
 Result:
 
 ```
-AB0CD0E
+AB0CD0EG
 AB0CD0EG
 ABBCDDEG
 AF0CH0EG
