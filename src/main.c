@@ -1,5 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/11/23 13:05:41 by rnugroho          #+#    #+#             */
+/*   Updated: 2017/11/23 13:05:41 by rnugroho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../libft/libft.h"
 #include "../includes/fillit.h"
+
+int		count_tetrs(char *str)
+{
+	return ((ft_strlen(str) + 1) / 21);
+}
 
 int		main(int argc, char **argv)
 {
@@ -19,7 +36,7 @@ int		main(int argc, char **argv)
 	tetrs = (char **)ft_memalloc(sizeof(char*)*(count_tetrs(str) + 1));
 	while (i < count_tetrs(str))
 	{
-		tetrs[i] = tetrs_decode(str + offset);
+		tetrs[i] = tetrs_decoder(str + offset);
 		if (tetrs[i] == NULL)
 		{
 			ft_errormsg(1);

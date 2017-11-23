@@ -30,5 +30,11 @@ int		**init_board(int size);
 void	ft_errormsg(int msg);
 char	*read_file(char *file);
 int		count_tetrs(char *str);
-char	*tetrs_decode(char *str);
+
+char	*tetrs_decoder(char *str);
+
+int		is_put_tetr(int ***board, char *tetr, int *loc, int max);
+void	put_tetr(int ***board, char *tetr, int *loc, int val);
+void	rem_tetr(int ***board, int val, int max);
+int		is_tetr_valid(char *str);
 #endif

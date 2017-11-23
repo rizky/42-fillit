@@ -12,7 +12,7 @@
 
 NAME= fillit
 
-SRC= main.c ft_fillit.c ft_input.c
+SRC= main.c init_board.c input_handler.c print_board.c tetrs_decoder.c tetrs_manager.c arrange_tetrs.c
 OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC= gcc
@@ -70,3 +70,6 @@ test: re
 
 run-debug: debug
 	lldb a.out
+
+run: re
+	./fillit tests/ok_tetrs0
