@@ -67,6 +67,8 @@ test: re
 	./fillit tests/ok_tetrs3
 	./fillit tests/bad_tetrs0
 	./fillit tests/bad_tetrs1
+	./fillit tests/bad_tetrs2
+	./fillit tests/bad_tetrs3
 
 run-debug: debug
 	lldb a.out
