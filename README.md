@@ -48,6 +48,17 @@ GGIFEHH
 
 ./fillit  0.89s user 0.01s system 97% cpu 0.929 total
 
+AB.CD.EG
+AB.CD.EG
+ABBCDDEG
+AF.CH.EG
+IF.JH.K.
+IFFJHHK.
+I..JJ.KK
+I.......
+
+./fillit ok_09_block  37.04s user 0.33s system 93% cpu 39.938 total
+
 
 0  1  2  3  4
 5  6  7  8  9
@@ -70,4 +81,4 @@ _**All function return 1 in case of error**_
 - **ft_linecheck**(input bufftetrim) --> check if the tetriminos block is valid
 
 Commands
-- make re && time ./fillit tetriminos
+- make re && time ./fillit inputs/tetrs0

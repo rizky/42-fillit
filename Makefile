@@ -12,7 +12,7 @@
 
 NAME= fillit
 
-SRC= main.c ft_fillit.c
+SRC= main.c ft_fillit.c ft_input.c
 OBJ= $(addprefix $(OBJDIR),$(SRC:.c=.o))
 
 CC= gcc

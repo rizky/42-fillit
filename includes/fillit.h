@@ -18,17 +18,17 @@
 # include <fcntl.h>
 # include "../libft/libft.h"
 
-int	ft_validfile(char *filestr);
-int	ft_syntaxcheck(const char *bf);
+#define BUF_SIZE 600
+
+int		ft_validfile(char *filestr);
+int		ft_syntaxcheck(const char *bf);
 
 void	print_board(int **board, int square_size);
-int		is_put_tetr(int ***board, char *tetr, int row, int col, int max);
-void	put_tetr(int ***board, char *tetr, int row, int col, int val);
-int		tetrlen(char **tetrs);
-int		find_loc(int ***board, char *tetr, int *row, int *col, int max);
-void	rem_tetr(int ***board, int val, int max);
-int		is_exist(int **board, int index, int max);
-int		board_dim(int **board, int max);
 int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size);
 int		**init_board(int size);
+
+void	ft_errormsg(int msg);
+char	*read_file(char *file);
+int		count_tetrs(char *str);
+char	*tetrs_decode(char *str);
 #endif
