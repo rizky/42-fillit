@@ -23,6 +23,7 @@ int		main(int argc, char **argv)
 		if (tetrs[i] == NULL)
 		{
 			ft_errormsg(1);
+			ft_putchar('\n');
 			return (0);
 		}
 		offset = offset + 21;
@@ -39,5 +40,6 @@ int		main(int argc, char **argv)
 		square_size++;
 		ft_memdel ((void **)board);
 	}
+	ft_putchar('\n');
 	return (0);
 }

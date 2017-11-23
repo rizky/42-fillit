@@ -59,3 +59,14 @@ fclean: clean remlib
 	rm -rf $(NAME)
 
 re: fclean all
+
+test: re
+	./fillit tests/ok_tetrs0
+	./fillit tests/ok_tetrs1
+	./fillit tests/ok_tetrs2
+	./fillit tests/ok_tetrs3
+	./fillit tests/bad_tetrs0
+	./fillit tests/bad_tetrs1
+
+run-debug: debug
+	lldb a.out

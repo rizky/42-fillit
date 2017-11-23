@@ -185,7 +185,6 @@ int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
 	if (index == tetrlen(tetrs))
 	{
 		print_board((*board), square_size);
-		ft_putchar('\n');
 		return (1);
 	}
 	i = 0;

@@ -58,16 +58,17 @@ int		count_tetrs(char *str)
 int 	is_one_solution(int sol[19])
 {
 	int i;
-	int	n;
+	int	max;
 
 	i = 0;
-	n = 0;
+	max = 0;
 	while (i < 19)
 	{
-		n = sol[i] + n;
+		if (max < sol[i])
+		max = sol[i];
 		i++;
 	}
-	return (n);
+	return (max);
 }
 
 
@@ -84,6 +85,25 @@ int 	get_sol(int sol[19])
 	return (0);
 }
 
+int		is_block_valid(char *str)
+{
+	int nblock;
+	int i;
+
+	i = 0;
+	nblock = 0;
+	while (i < 21 && *(str + i) != '\0')
+	{
+		if (*(str + i) == '#')
+			nblock++;
+		i++;
+	}
+	if (nblock == 4)
+	return (1);
+		else
+	return (0);
+}
+
 char	*tetrs_decode(char *str)
 {
 	char tetrs[19][5] = {
@@ -91,23 +111,25 @@ char	*tetrs_decode(char *str)
 	"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
 	">v<"
 	};
-	int	sol[19] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+	int	sol[19] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int	offset[19] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int i;
 	int c;
 	char *ptr;
 	char *result;
 
+	if (!is_block_valid(str))
+		return (NULL);
 	c = 0;
 	ptr = str;
 	while (*ptr != '#' && *ptr != '\0')
 		ptr++;
-	while (is_one_solution(sol) > 1)
+	while (is_one_solution(sol) < 1 && c < 5)
 	{
 		i = 0;
 		while (i < 19)
 		{
-			if (sol[i])
+			if (sol[i] == 0)
 			{
 				if (tetrs[i][c] == '\0')
 					sol[i] = 1;
@@ -120,7 +142,7 @@ char	*tetrs_decode(char *str)
 				else if (tetrs[i][c] == '<' && *(ptr + offset[i] - 1) == '#' && (ptr + offset[i] - 1 - str) < 21 )
 					offset[i] = offset[i] - 1;
 				else
-					sol[i] = 0;
+					sol[i] = -1;
 			}
 			i++;
 		}
