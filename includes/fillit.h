@@ -24,8 +24,11 @@ int		ft_validfile(char *filestr);
 int		ft_syntaxcheck(const char *bf);
 
 void	print_board(int **board, int square_size);
+
 int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size);
+
 int		**init_board(int size);
+int		*init_array(void);
 
 void	ft_errormsg(int msg);
 char	*read_file(char *file);

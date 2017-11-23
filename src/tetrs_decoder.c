@@ -16,54 +16,47 @@ int		is_one_solution(int sol[19])
 {
 	int i;
 	int	max;
+	int index;
 
 	i = 0;
 	max = 0;
 	while (i < 19)
 	{
 		if (max < sol[i])
+		{
 			max = sol[i];
+			index = i;
+		}
 		i++;
 	}
-	return (max);
+	if (max < 1)
+		return (-1);
+	else
+		return (index);
 }
-
-int		get_sol(int sol[19])
-{
-	int i;
-
-	i = 0;
-	while (i < 19)
-	{
-		if (sol[i] == 1)
-			return (i);
-		i++;
-	}
-	return (0);
-}
-
 
 char	*tetrs_decoder(char *str)
 {
-	char	tetrs[19][5] = {
-			">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
-			"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
-			">v<"
-			};
-	int		sol[19] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	int		offset[19] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-	int		i;
-	int		c;
-	char	*ptr;
-	char	*result;
+	const char	tetrs[19][5] = {
+				">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
+				"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
+				">v<"
+				};
+	int			*sol;
+	int			*offset;
+	int			i;
+	int			c;
+	char		*ptr;
 
 	if (!is_tetr_valid(str))
 		return (NULL);
+	sol = init_array();
+	offset = init_array();
 	c = 0;
 	ptr = str;
 	while (*ptr != '#' && *ptr != '\0')
 		ptr++;
-	while (is_one_solution(sol) < 1 && c < 5)
+	while (is_one_solution(sol) == -1 && c < 5)
 	{
 		i = 0;
 		while (i < 19)
@@ -91,8 +84,7 @@ char	*tetrs_decoder(char *str)
 		}
 		c++;
 	}
-	if (is_one_solution(sol) == 0)
+	if (is_one_solution(sol) == -1)
 		return (NULL);
-	result = ft_strdup(tetrs[get_sol(sol)]);
-	return (result);
+	return (ft_strdup(tetrs[is_one_solution(sol)]));
 }

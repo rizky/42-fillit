@@ -34,3 +34,18 @@ int		**init_board(int size)
 	}
 	return (board);
 }
+
+int		*init_array(void)
+{
+	int i;
+	int *arr;
+
+	i = 0;
+	arr = (int*)malloc(sizeof(int) * 19);
+	while (i < 19)
+	{
+		arr[i] = 0;
+		i++;
+	}
+	return (arr);
+}
