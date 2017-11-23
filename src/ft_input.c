@@ -111,13 +111,13 @@ char	*tetrs_decode(char *str)
 			{
 				if (tetrs[i][c] == '\0')
 					sol[i] = 1;
-				else if (tetrs[i][c] == '>' && *(ptr + offset[i] + 1) == '#')
+				else if (tetrs[i][c] == '>' && *(ptr + offset[i] + 1) == '#' && (ptr + offset[i] + 1 - str) < 21 )
 					offset[i] = offset[i] + 1;
-				else if (tetrs[i][c] == 'v' && *(ptr + offset[i] + 5) == '#')
+				else if (tetrs[i][c] == 'v' && *(ptr + offset[i] + 5) == '#' && (ptr + offset[i] + 5 - str) < 21 )
 					offset[i] = offset[i] + 5;
-				else if (tetrs[i][c] == '^' && *(ptr + offset[i] - 5) == '#')
+				else if (tetrs[i][c] == '^' && *(ptr + offset[i] - 5) == '#' && (ptr + offset[i] - 5 - str) < 21 )
 					offset[i] = offset[i] - 5;
-				else if (tetrs[i][c] == '<' && *(ptr + offset[i] - 1) == '#')
+				else if (tetrs[i][c] == '<' && *(ptr + offset[i] - 1) == '#' && (ptr + offset[i] - 1 - str) < 21 )
 					offset[i] = offset[i] - 1;
 				else
 					sol[i] = 0;
