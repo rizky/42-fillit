@@ -38,10 +38,10 @@ int		is_one_solution(int sol[19])
 char	*tetrs_decoder(char *str)
 {
 	const char	tetrs[19][5] = {
-				">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
-				"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
-				">v<"
-				};
+	">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
+	"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
+	">v<"
+	};
 	int			*sol;
 	int			*offset;
 	int			i;

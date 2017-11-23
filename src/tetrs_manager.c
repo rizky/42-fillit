@@ -33,9 +33,8 @@ int		is_put_tetr(int ***board, char *tetr, int *loc, int max)
 			row++;
 		if (tetr[i] == '^')
 			row--;
-		if (row >= max || col >= max || row < 0 || col < 0)
-			return (0);
-		if ((*board)[row][col] != 0)
+		if (row >= max || col >= max || row < 0 || col < 0
+			|| (*board)[row][col] != 0)
 			return (0);
 		i++;
 	}
@@ -86,7 +85,6 @@ void	rem_tetr(int ***board, int val, int max)
 		i++;
 	}
 }
-
 
 int		is_tetr_valid(char *str)
 {
