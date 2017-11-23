@@ -82,3 +82,13 @@ _**All function return 1 in case of error**_
 
 Commands
 - make re && time ./fillit inputs/tetrs0
+
+
+Test Case
+
+-[x] bad_tetrs0
+-[x] bad_tetrs1 
+-[v] ok_tetrs0  
+-[v] ok_tetrs1  
+-[v] ok_tetrs2  
+-[x] ok_tetrs3

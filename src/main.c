@@ -20,7 +20,7 @@ int		main(int argc, char **argv)
 	while (i < count_tetrs(str))
 	{
 		tetrs[i] = tetrs_decode(str + offset);
-		if (!tetrs[i])
+		if (tetrs[i] == NULL)
 		{
 			ft_errormsg(1);
 			return (0);
