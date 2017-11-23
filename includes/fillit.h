@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
-# include "libft.h"
+# include "../libft/libft.h"
 
 int	ft_validfile(char *filestr);
 int	ft_basicheck(const char *bf);

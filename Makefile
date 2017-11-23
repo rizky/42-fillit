@@ -44,7 +44,7 @@ $(NAME): obj libft $(OBJ)
 	$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
 
 debug: obj libft $(OBJ) 
-	$(CC) $(LIBLINK) -g $(SRCDIR)main.c
+	$(CC) $(LIBLINK) -g $(SRCDIR)*.c
 
 remlib:
 	rm -rf $(LIBFT)

@@ -15,7 +15,7 @@ void	print_board(int **board, int square_size)
 			if (board[row][col] != 0)
 				ft_putchar(board[row][col] + 'A' - 1);
 			else
-				ft_putchar('0');
+				ft_putchar('.');
 			col++;
 		}
 		ft_putchar('\n');
