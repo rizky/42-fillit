@@ -35,23 +35,36 @@ int		is_one_solution(int sol[19])
 		return (index);
 }
 
-char	*tetrs_decoder(char *str)
+int	check_shape(int *offset_i, char tetr, char *ptr, char *str)
 {
-	const char	tetrs[19][5] = {
-	">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
-	"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
-	">v<"
-	};
-	int			*sol;
-	int			*offset;
+	int sol_i;
+
+	sol_i = 0;
+	if (tetr == '\0')
+		sol_i = 1;
+	else if (tetr == '>' && *(ptr + *offset_i + 1) == '#'
+			&& (ptr + *offset_i + 1 - str) < 21)
+		*offset_i = *offset_i + 1;
+	else if (tetr == 'v' && *(ptr + *offset_i + 5) == '#'
+			&& (ptr + *offset_i + 5 - str) < 21)
+		*offset_i = *offset_i + 5;
+	else if (tetr == '^' && *(ptr + *offset_i - 5) == '#'
+			&& (ptr + *offset_i - 5 - str) < 21)
+		*offset_i = *offset_i - 5;
+	else if (tetr == '<' && *(ptr + *offset_i - 1) == '#'
+			&& (ptr + *offset_i - 1 - str) < 21)
+		*offset_i = *offset_i - 1;
+	else
+		sol_i = -1;
+	return (sol_i);
+}
+
+char	*decode(char *str, int *sol, int *offset, const char tetrs[19][5])
+{
 	int			i;
 	int			c;
 	char		*ptr;
 
-	if (!is_tetr_valid(str))
-		return (NULL);
-	sol = init_array();
-	offset = init_array();
 	c = 0;
 	ptr = str;
 	while (*ptr != '#' && *ptr != '\0')
@@ -62,24 +75,7 @@ char	*tetrs_decoder(char *str)
 		while (i < 19)
 		{
 			if (sol[i] == 0)
-			{
-				if (tetrs[i][c] == '\0')
-					sol[i] = 1;
-				else if (tetrs[i][c] == '>' && *(ptr + offset[i] + 1) == '#'
-						&& (ptr + offset[i] + 1 - str) < 21)
-					offset[i] = offset[i] + 1;
-				else if (tetrs[i][c] == 'v' && *(ptr + offset[i] + 5) == '#'
-						&& (ptr + offset[i] + 5 - str) < 21)
-					offset[i] = offset[i] + 5;
-				else if (tetrs[i][c] == '^' && *(ptr + offset[i] - 5) == '#'
-						&& (ptr + offset[i] - 5 - str) < 21)
-					offset[i] = offset[i] - 5;
-				else if (tetrs[i][c] == '<' && *(ptr + offset[i] - 1) == '#'
-						&& (ptr + offset[i] - 1 - str) < 21)
-					offset[i] = offset[i] - 1;
-				else
-					sol[i] = -1;
-			}
+				sol[i] = check_shape(&(offset[i]), tetrs[i][c], ptr, str);
 			i++;
 		}
 		c++;
@@ -87,4 +83,21 @@ char	*tetrs_decoder(char *str)
 	if (is_one_solution(sol) == -1)
 		return (NULL);
 	return (ft_strdup(tetrs[is_one_solution(sol)]));
+}
+
+char	*tetrs_decoder(char *str)
+{
+	const char	tetrs[19][5] = {
+	">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
+	"vvv", "vv>", "vv<", "v>v", "v<v", "v><v", "v<>v", ">vv", "><vv",
+	">v<"
+	};
+	int			*sol;
+	int			*offset;
+	
+	if (!is_tetr_valid(str))
+		return (NULL);
+	sol = init_array();
+	offset = init_array();
+	return (decode(str, sol, offset, tetrs));
 }

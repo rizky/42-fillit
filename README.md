@@ -89,7 +89,10 @@ Test Case
 
 -[v] bad_tetrs0
 -[v] bad_tetrs1
+-[x] bad_tetrs4
 -[v] ok_tetrs0
 -[v] ok_tetrs1
 -[v] ok_tetrs2
 -[v] ok_tetrs3
+
+* Check if the char only # and .

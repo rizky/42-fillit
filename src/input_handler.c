@@ -14,6 +14,8 @@
 
 void	ft_errormsg(int msg)
 {
+	if (msg == 0)
+		ft_putstr("error\n");
 	if (msg == 1)
 		ft_putstr_fd("Error when opening the file", 2);
 	if (msg == 2)
@@ -34,7 +36,7 @@ char	*read_file(char *file)
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{
-		ft_errormsg(1);
+		ft_errormsg(0);
 		return (NULL);
 	}
 	if (!(buffer = (char*)malloc(sizeof(*buffer) * (BUF_SIZE + 1))))
@@ -51,12 +53,12 @@ int		ft_isvalid(int argc, char *argv)
 {
 	if (argc != 2)
 	{
-		ft_errormsg(1);
+		ft_errormsg(0);
 		return (0);
 	}
 	if (ft_strlen(argv) == 0)
 	{
-		ft_putstr("error\n");
+		ft_errormsg(0);
 		return (0);
 	}
 	return (1);

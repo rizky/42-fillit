@@ -55,7 +55,7 @@ int		main(int argc, char **argv)
 	tetrs = handel_input(argv[1]);
 	if (!tetrs)
 	{
-		ft_putstr("Error\n");
+		ft_errormsg(0);
 		return (0);
 	}
 	square_size = 2;

@@ -61,14 +61,17 @@ fclean: clean remlib
 re: fclean all
 
 test: re
-	./fillit tests/ok_tetrs0
-	./fillit tests/ok_tetrs1
-	./fillit tests/ok_tetrs2
-	./fillit tests/ok_tetrs3
-	./fillit tests/bad_tetrs0
-	./fillit tests/bad_tetrs1
-	./fillit tests/bad_tetrs2
-	./fillit tests/bad_tetrs3
+	./fillit tests/ok_tetrs0 | cat -e
+	./fillit tests/ok_tetrs1 | cat -e
+	./fillit tests/ok_tetrs2 | cat -e
+	./fillit tests/ok_tetrs3 | cat -e
+	./fillit tests/bad_tetrs0 | cat -e
+	./fillit tests/bad_tetrs1 | cat -e
+	./fillit tests/bad_tetrs2 | cat -e
+	./fillit tests/bad_tetrs3 | cat -e
+	./fillit tests/bad_tetrs4 | cat -e
+	./fillit tests/bad_tetrs3 tests/bad_tetrs3 | cat -e
+	./fillit | cat -e
 
 run-debug: debug
 	lldb a.out
