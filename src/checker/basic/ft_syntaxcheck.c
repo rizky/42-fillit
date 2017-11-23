@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_basicheck.c                                     :+:      :+:    :+:   */
+/*   ft_syntaxcheck.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arizzell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/22 12:13:23 by arizzell          #+#    #+#             */
-/*   Updated: 2017/11/22 12:13:24 by arizzell         ###   ########.fr       */
+/*   Created: 2017/11/22 13:29:48 by arizzell          #+#    #+#             */
+/*   Updated: 2017/11/22 13:29:49 by arizzell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../../includes/fillit.h"
 
-int	ft_basicheck(const char *bf)
+int	ft_syntaxcheck(const char *bf)
 {
 	int index;
 

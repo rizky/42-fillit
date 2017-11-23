@@ -63,9 +63,11 @@ GGIFEHH
 
 ```
 
-Andrea:
-- ft_basicheck(input bufftetrim) --> check the presence of other char different from (.  #  \n)
-- ft_validfile(input pathtofile) --> check if the file is present and readable
+_**All function return 1 in case of error**_
+
+- **ft_basicheck**(input bufftetrim) --> check the presence of other char different from (.  #  \n)
+- **ft_validfile**(input pathtofile) --> check if the file is present and readable
+- **ft_linecheck**(input bufftetrim) --> check if the tetriminos block is valid
 
 Commands
 - make re && time ./fillit tetriminos

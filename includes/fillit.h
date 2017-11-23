@@ -19,7 +19,7 @@
 # include "../libft/libft.h"
 
 int	ft_validfile(char *filestr);
-int	ft_basicheck(const char *bf);
+int	ft_syntaxcheck(const char *bf);
 
 void	print_board(int **board, int square_size);
 int		is_put_tetr(int ***board, char *tetr, int row, int col, int max);
