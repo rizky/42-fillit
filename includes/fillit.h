@@ -30,7 +30,9 @@ int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max);
 int		ft_is_tetr_valid(char *str);
 int		*ft_init_array(void);
 int		**ft_init_board(int size);
+int		**ft_reset_board(int ***board, int size);
 char	*ft_read_file(char *file);
 char	*ft_tetrs_decoder(char *str);
-
+int		*ft_init_loc(int *loc);
+int		*ft_inc_loc(int *loc, int max);
 #endif

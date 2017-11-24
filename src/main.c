@@ -20,7 +20,7 @@ int		ft_count_tetrs(char *str)
 		return (0);
 }
 
-char	**handel_input(char *argv)
+char	**ft_handel_input(char *argv)
 {
 	char	*str;
 	char	**tetrs;
@@ -52,7 +52,7 @@ int		main(int argc, char **argv)
 	int		success;
 	int		max;
 
-	tetrs = handel_input(argv[1]);
+	tetrs = ft_handel_input(argv[1]);
 	if (!tetrs)
 	{
 		ft_errormsg(0);
@@ -60,10 +60,16 @@ int		main(int argc, char **argv)
 	}
 	max = 2;
 	success = 0;
+	int *loc;
+	loc = ft_memalloc(sizeof(int) * 2);
 	while (success == 0)
 	{
-		board = ft_init_board(max);
+		loc[0] = 0;
+		loc[1] = 0;
+		board = ft_init_board(8);
 		success = ft_arrange_tetrs(&board, tetrs, 0, max);
+		if (success)
+			ft_print_board(board, max);
 		max++;
 	}
 	ft_putchar('\n');

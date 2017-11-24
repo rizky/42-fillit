@@ -73,6 +73,20 @@ I.......
 .#..\n
 .#..\n
 
+valid test 13 : fail :/
+WHAT IS EXPECTED:
+BBB.
+..BC
+A.CC
+AAAC
+
+YOUR OUTPUT:
+ABBB.
+AAABC
+...CC
+....C
+.....
+
 ```
 
 _**All function return 1 in case of error**_

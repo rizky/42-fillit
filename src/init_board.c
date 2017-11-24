@@ -49,3 +49,21 @@ int		*ft_init_array(void)
 	}
 	return (arr);
 }
+
+int		*ft_init_loc(int *loc)
+{
+	loc[0] = 0;
+	loc[1] = 0;
+	return (loc);
+}
+
+int		*ft_inc_loc(int *loc, int max)
+{
+	loc[1]++;
+	if (loc[1] == max)
+	{
+		loc[0]++;
+		loc[1] = 0;
+	}
+	return (loc);
+}

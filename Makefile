@@ -77,4 +77,5 @@ run-debug: debug
 	lldb a.out
 
 run: re
-	./fillit tests/correct_file/valid_9
+	# ./fillit tests/correct_file/valid_9
+	./fillit tests/correct_file/valid_13
