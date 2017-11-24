@@ -43,7 +43,6 @@ int		is_exist(int **board, int index, int max)
 	int j;
 
 	i = 0;
-	j = 0;
 	while (i < max)
 	{
 		j = 0;

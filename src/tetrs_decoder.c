@@ -20,6 +20,7 @@ int		is_one_solution(int sol[19])
 
 	i = 0;
 	max = 0;
+	index = 0;
 	while (i < 19)
 	{
 		if (max < sol[i])

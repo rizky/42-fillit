@@ -26,13 +26,11 @@ void	ft_errormsg(int msg)
 
 char	*read_file(char *file)
 {
-	int		ret;
+	ssize_t ret;
 	int		fd;
 	char	*buffer;
-	int		maxfile;
 	char	*output;
 
-	maxfile = 0;
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
 	{

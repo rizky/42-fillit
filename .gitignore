@@ -58,4 +58,4 @@ dkms.conf
 42_fillit
 .vscode
 launch.json
-/CMAKEOUT
+/OUT

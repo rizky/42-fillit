@@ -10,12 +10,14 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "../includes/fillit.h"
 
 int		count_tetrs(char *str)
 {
-	return ((ft_strlen(str) + 1) / 21);
+	if (str != NULL)
+		return ((int) ((ft_strlen(str) + 1) / 21));
+	else
+		return (0);
 }
 
 char	**handel_input(char *argv)
@@ -35,9 +37,7 @@ char	**handel_input(char *argv)
 	{
 		tetrs[i] = tetrs_decoder(str + offset);
 		if (tetrs[i] == NULL)
-		{
 			return (0);
-		}
 		offset = offset + 21;
 		i++;
 	}
