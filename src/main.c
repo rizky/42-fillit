@@ -28,13 +28,45 @@ int		ft_checkgrid(char *str)
 	return (1);
 }
 
-char	**ft_process_input(int argc, char *str)
+int	ft_checkfile(char *str)
+{
+	int i;
+
+	if ((ft_strlen(str) + 1) % 21 != 0)
+		return (0);
+	if (ft_strlen(str) > 550)
+		return (0);
+	i = 0;
+	while (ft_checkgrid(&str[i]))
+	{
+		if (i + 20 == ft_strlen(str))
+			return (1);
+		i = i + 20;
+		if (str[i] != '\n')
+		{
+			return (0);
+		}
+		i++;
+	}
+	if (i == ft_strlen(str))
+		return (1);
+	return (0);
+}
+
+char	**ft_process_input(int argc, char *argv)
 {
 	char	**tetrs;
+	char	*str;
 
 	if (argc != 2)
 	{
 		ft_errormsg(3);
+		return (0);
+	}
+	str = ft_read_file(argv);
+	if (ft_checkfile(str) == 0)
+	{
+		ft_errormsg(0);
 		return (0);
 	}
 	tetrs = ft_handel_input(str);

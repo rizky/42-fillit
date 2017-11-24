@@ -34,6 +34,6 @@ char	*ft_read_file(char *file);
 char	*ft_tetrs_decoder(char *str);
 int		*ft_init_loc(int *loc);
 int		*ft_inc_loc(int *loc, int max);
-char	**ft_handel_input(char *argv);
+char	**ft_handel_input(char *str);
 int		ft_checkfile(char *str);
 #endif

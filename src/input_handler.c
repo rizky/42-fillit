@@ -51,16 +51,14 @@ int		ft_count_tetrs(char *str)
 		return (0);
 }
 
-char	**ft_handel_input(char *argv)
+char	**ft_handel_input(char *str)
 {
-	char	*str;
 	char	**tetrs;
 	int		i;
 	int		offset;
 
 	i = 0;
 	offset = 0;
-	str = ft_read_file(argv);
 	if (ft_count_tetrs(str) == 0)
 		return (0);
 	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
