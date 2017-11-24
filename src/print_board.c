@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_board.c                                      :+:      :+:    :+:   */
+/*   ft_print_board.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-void	print_board(int **board, int square_size)
+void	ft_print_board(int **board, int square_size)
 {
 	int row;
 	int col;

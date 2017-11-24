@@ -24,7 +24,7 @@ void	ft_errormsg(int msg)
 		ft_putstr_fd("Usage : Must have only one file allowed", 2);
 }
 
-char	*read_file(char *file)
+char	*ft_read_file(char *file)
 {
 	ssize_t ret;
 	int		fd;

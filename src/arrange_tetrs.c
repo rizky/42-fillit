@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   arrange_tetrs.c                                    :+:      :+:    :+:   */
+/*   ft_arrange_tetrs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -24,7 +24,7 @@ int		find_loc(int ***board, char *tetr, int **loc, int max)
 		c[1] = 0;
 		while (c[1] < max)
 		{
-			if (is_put_tetr(&(*board), tetr, c, max))
+			if (ft_is_put_tetr(&(*board), tetr, c, max))
 			{
 				(*loc)[0] = c[0];
 				(*loc)[1] = c[1];
@@ -67,14 +67,14 @@ int		tetrlen(char **tetrs)
 	return (len);
 }
 
-int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
+int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
 {
 	int i;
 	int *loc;
 
 	if (index == tetrlen(tetrs))
 	{
-		print_board((*board), square_size);
+		ft_print_board((*board), square_size);
 		return (1);
 	}
 	i = 0;
@@ -86,10 +86,10 @@ int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
 		if (!is_exist((*board), i + 1, square_size) &&
 			find_loc(&(*board), tetrs[i], &loc, square_size))
 		{
-			put_tetr(&(*board), tetrs[i], loc, i + 1);
-			if (arrange_tetrs(&(*board), tetrs, index + 1, square_size))
+			ft_put_tetr(&(*board), tetrs[i], loc, i + 1);
+			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, square_size))
 				return (1);
-			rem_tetr(&(*board), i + 1, square_size);
+			ft_rem_tetr(&(*board), i + 1, square_size);
 		}
 		i++;
 	}

@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-int		count_tetrs(char *str)
+int		ft_count_tetrs(char *str)
 {
 	if (str != NULL)
 		return ((int) ((ft_strlen(str) + 1) / 21));
@@ -29,19 +29,19 @@ char	**handel_input(char *argv)
 
 	i = 0;
 	offset = 0;
-	str = read_file(argv);
-	if (count_tetrs(str) == 0)
+	str = ft_read_file(argv);
+	if (ft_count_tetrs(str) == 0)
 		return (0);
-	tetrs = (char **)ft_memalloc(sizeof(char*) * (count_tetrs(str) + 1));
-	while (i < count_tetrs(str))
+	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
+	while (i < ft_count_tetrs(str))
 	{
-		tetrs[i] = tetrs_decoder(str + offset);
+		tetrs[i] = ft_tetrs_decoder(str + offset);
 		if (tetrs[i] == NULL)
 			return (0);
 		offset = offset + 21;
 		i++;
 	}
-	tetrs[count_tetrs(str)] = 0;
+	tetrs[ft_count_tetrs(str)] = 0;
 	return (tetrs);
 }
 
@@ -62,8 +62,8 @@ int		main(int argc, char **argv)
 	success = 0;
 	while (success == 0)
 	{
-		board = init_board(square_size);
-		success = arrange_tetrs(&board, tetrs, 0, square_size);
+		board = ft_init_board(square_size);
+		success = ft_arrange_tetrs(&board, tetrs, 0, square_size);
 		square_size++;
 	}
 	ft_putchar('\n');
