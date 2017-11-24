@@ -88,30 +88,22 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 {
 	int i;
 	int *loc;
-	if (max * max < tetrlen(tetrs) * 4)
-		return (0);
 	if (index == tetrlen(tetrs))
 		return (1);
-	i = 0;
+	i = index;
 	loc = ft_memalloc(sizeof(int) * 2);
-	while (i < tetrlen(tetrs))
+	loc = ft_init_loc(loc);
+	while (loc[0] < max && is_any_space(*board, tetrlen(tetrs) - index, max))
 	{
-		loc = ft_init_loc(loc);
-		while (loc[0] < max && is_any_space(*board, tetrlen(tetrs) - index, max))
+		if (!is_exist((*board), i + 1, max) &&
+			find_loc(&(*board), tetrs[i], &loc, max))
 		{
-			if (!is_exist((*board), i + 1, max) &&
-				find_loc(&(*board), tetrs[i], &loc, max))
-			{
-				ft_put_tetr(&(*board), tetrs[i], loc, i + 1);
-				ft_print_board(*board, max);
-				ft_putchar('\n');
-				if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
-					return (1);
-				ft_rem_tetr(&(*board), i + 1, max);
-			}
-			loc = ft_inc_loc(loc, max);
+			ft_put_tetr(&(*board), tetrs[i], loc, i + 1);
+			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
+				return (1);
+			ft_rem_tetr(&(*board), i + 1, max);
 		}
-		i++;
+		loc = ft_inc_loc(loc, max);
 	}
 	return (0);
 }
