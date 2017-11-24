@@ -58,50 +58,23 @@ int		tetrlen(char **tetrs)
 	return (len);
 }
 
-int		is_any_space(int **board, int rest, int max)
-{
-	int spaces;
-	int row;
-	int col;
-
-	row = 0;
-	col = 0;
-	spaces = 0;
-	while (row < max)
-	{
-		if (board[row][col] == 0)
-			spaces++;
-		col++;
-		if (col == max)
-		{
-			row++;
-			col = 0;
-		}
-	}
-	if (spaces >= (rest * 4))
-		return (1);
-	else
-		return (0);
-}
-
 int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 {
-	int i;
 	int *loc;
+
 	if (index == tetrlen(tetrs))
 		return (1);
-	i = index;
 	loc = ft_memalloc(sizeof(int) * 2);
 	loc = ft_init_loc(loc);
-	while (loc[0] < max && is_any_space(*board, tetrlen(tetrs) - index, max))
+	while (loc[0] < max)
 	{
-		if (!is_exist((*board), i + 1, max) &&
-			find_loc(&(*board), tetrs[i], &loc, max))
+		if (!is_exist((*board), index + 1, max) &&
+			find_loc(&(*board), tetrs[index], &loc, max))
 		{
-			ft_put_tetr(&(*board), tetrs[i], loc, i + 1);
+			ft_put_tetr(&(*board), tetrs[index], loc, index + 1);
 			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
 				return (1);
-			ft_rem_tetr(&(*board), i + 1, max);
+			ft_rem_tetr(&(*board), index + 1, max);
 		}
 		loc = ft_inc_loc(loc, max);
 	}
