@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_board.c                                      :+:      :+:    :+:   */
+/*   ft_print_board.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -24,7 +24,7 @@ void	ft_print_board(int **board, int max)
 		while (col < max)
 		{
 			if (board[row][col] != 0)
-				ft_putchar((char) (board[row][col] + 'A' - 1));
+				ft_putchar((char)(board[row][col] + 'A' - 1));
 			else
 				ft_putchar('.');
 			col++;

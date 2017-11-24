@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tetrs_decoder.c                                    :+:      :+:    :+:   */
+/*   ft_tetrs_decoder.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -36,7 +36,7 @@ int		is_one_solution(int sol[19])
 		return (index);
 }
 
-int	check_shape(int *offset_i, char tetr, char *ptr, char *str)
+int		check_shape(int *offset_i, char tetr, char *ptr, char *str)
 {
 	int sol_i;
 
@@ -95,7 +95,7 @@ char	*ft_tetrs_decoder(char *str)
 	};
 	int			*sol;
 	int			*offset;
-	
+
 	if (!ft_is_tetr_valid(str))
 		return (NULL);
 	sol = ft_init_array();

@@ -15,7 +15,7 @@
 int		ft_count_tetrs(char *str)
 {
 	if (str != NULL)
-		return ((int) ((ft_strlen(str) + 1) / 21));
+		return ((int)((ft_strlen(str) + 1) / 21));
 	else
 		return (0);
 }
@@ -60,13 +60,9 @@ int		main(int argc, char **argv)
 	}
 	max = 2;
 	success = 0;
-	int *loc;
-	loc = ft_memalloc(sizeof(int) * 2);
 	while (success == 0)
 	{
-		loc[0] = 0;
-		loc[1] = 0;
-		board = ft_init_board(8);
+		board = ft_init_board(max);
 		success = ft_arrange_tetrs(&board, tetrs, 0, max);
 		if (success)
 			ft_print_board(board, max);

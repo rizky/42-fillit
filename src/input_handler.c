@@ -21,7 +21,7 @@ void	ft_errormsg(int msg)
 	if (msg == 2)
 		ft_putstr_fd("The file is too large", 2);
 	if (msg == 3)
-		ft_putstr_fd("Usage : ./fillit source_file (only 1 source_file allowed)", 2);
+		ft_putstr_fd("Usage : ./fillit source_file", 2);
 }
 
 char	*ft_read_file(char *file)
