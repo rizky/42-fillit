@@ -20,29 +20,19 @@ int		ft_count_tetrs(char *str)
 		return (0);
 }
 
-char	**ft_handel_input(char *argv)
+int		ft_isvalid(int argc, char *argv)
 {
-	char	*str;
-	char	**tetrs;
-	int		i;
-	int		offset;
-
-	i = 0;
-	offset = 0;
-	str = ft_read_file(argv);
-	if (ft_count_tetrs(str) == 0)
-		return (0);
-	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
-	while (i < ft_count_tetrs(str))
+	if (argc != 2)
 	{
-		tetrs[i] = ft_tetrs_decoder(str + offset);
-		if (tetrs[i] == NULL)
-			return (0);
-		offset = offset + 21;
-		i++;
+		ft_errormsg(3);
+		return (0);
 	}
-	tetrs[ft_count_tetrs(str)] = 0;
-	return (tetrs);
+	if (ft_strlen(argv) == 0)
+	{
+		ft_errormsg(0);
+		return (0);
+	}
+	return (1);
 }
 
 int		main(int argc, char **argv)

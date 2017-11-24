@@ -43,17 +43,27 @@ char	*ft_read_file(char *file)
 	return (output);
 }
 
-int		ft_isvalid(int argc, char *argv)
+char	**ft_handel_input(char *argv)
 {
-	if (argc != 2)
-	{
-		ft_errormsg(3);
+	char	*str;
+	char	**tetrs;
+	int		i;
+	int		offset;
+
+	i = 0;
+	offset = 0;
+	str = ft_read_file(argv);
+	if (ft_count_tetrs(str) == 0)
 		return (0);
-	}
-	if (ft_strlen(argv) == 0)
+	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
+	while (i < ft_count_tetrs(str))
 	{
-		ft_errormsg(0);
-		return (0);
+		tetrs[i] = ft_tetrs_decoder(str + offset);
+		if (tetrs[i] == NULL)
+			return (0);
+		offset = offset + 21;
+		i++;
 	}
-	return (1);
+	tetrs[ft_count_tetrs(str)] = 0;
+	return (tetrs);
 }
