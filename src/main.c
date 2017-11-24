@@ -50,7 +50,7 @@ int		main(int argc, char **argv)
 	char	**tetrs;
 	int		**board;
 	int		success;
-	int		square_size;
+	int		max;
 
 	tetrs = handel_input(argv[1]);
 	if (!tetrs)
@@ -58,13 +58,13 @@ int		main(int argc, char **argv)
 		ft_errormsg(0);
 		return (0);
 	}
-	square_size = 2;
+	max = 2;
 	success = 0;
 	while (success == 0)
 	{
-		board = init_board(square_size);
-		success = arrange_tetrs(&board, tetrs, 0, square_size);
-		square_size++;
+		board = init_board(max);
+		success = arrange_tetrs(&board, tetrs, 0, max);
+		max++;
 	}
 	ft_putchar('\n');
 	return (0);

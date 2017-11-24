@@ -77,4 +77,4 @@ run-debug: debug
 	lldb a.out
 
 run: re
-	./fillit tests/ok_tetrs0
+	./fillit tests/correct_file/valid_9

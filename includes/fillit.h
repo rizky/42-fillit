@@ -23,9 +23,9 @@
 int		ft_validfile(char *filestr);
 int		ft_syntaxcheck(const char *bf);
 
-void	print_board(int **board, int square_size);
+void	print_board(int **board, int max);
 
-int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size);
+int		arrange_tetrs(int ***board, char **tetrs, int index, int max);
 
 int		**init_board(int size);
 int		*init_array(void);

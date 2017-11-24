@@ -17,8 +17,8 @@ int		find_loc(int ***board, char *tetr, int **loc, int max)
 	int *c;
 
 	c = ft_memalloc(sizeof(int) * 2);
-	c[0] = 0;
-	c[1] = 0;
+	c[0] = (*loc)[0];
+	c[1] = (*loc)[1];
 	while (c[0] < max)
 	{
 		c[1] = 0;
@@ -68,29 +68,39 @@ int		tetrlen(char **tetrs)
 	return (len);
 }
 
-int		arrange_tetrs(int ***board, char **tetrs, int index, int square_size)
+int		arrange_tetrs(int ***board, char **tetrs, int index, int max)
 {
 	int i;
 	int *loc;
 
 	if (index == tetrlen(tetrs))
 	{
-		print_board((*board), square_size);
+		print_board((*board), max);
 		return (1);
 	}
 	i = 0;
 	loc = ft_memalloc(sizeof(int) * 2);
-	loc[0] = 0;
-	loc[1] = 0;
 	while (i < tetrlen(tetrs))
 	{
-		if (!is_exist((*board), i + 1, square_size) &&
-			find_loc(&(*board), tetrs[i], &loc, square_size))
+		// loc[0] = 0;
+		// loc[1] = 1;
+		if (!is_exist((*board), i + 1, max) &&
+			find_loc(&(*board), tetrs[i], &loc, max))
 		{
 			put_tetr(&(*board), tetrs[i], loc, i + 1);
-			if (arrange_tetrs(&(*board), tetrs, index + 1, square_size))
+			print_board((*board), max);
+			ft_putchar('\n');
+			if (arrange_tetrs(&(*board), tetrs, index + 1, max))
 				return (1);
-			rem_tetr(&(*board), i + 1, square_size);
+			rem_tetr(&(*board), i + 1, max);
+			loc[1] = loc[1] + 1;
+			// if (loc[1] == max)
+			// {
+			// 	loc[1] = 0;
+			// 	loc[0] = loc[0] + 1;
+			// 	if (loc[0] == max)
+			// 		break;
+			// }
 		}
 		i++;
 	}

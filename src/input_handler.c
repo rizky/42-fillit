@@ -15,7 +15,7 @@
 void	ft_errormsg(int msg)
 {
 	if (msg == 0)
-		ft_putstr("error\n");
+		ft_putstr("error");
 	if (msg == 1)
 		ft_putstr_fd("Error when opening the file", 2);
 	if (msg == 2)

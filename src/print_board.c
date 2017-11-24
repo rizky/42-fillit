@@ -12,16 +12,16 @@
 
 #include "../includes/fillit.h"
 
-void	print_board(int **board, int square_size)
+void	print_board(int **board, int max)
 {
 	int row;
 	int col;
 
 	row = 0;
-	while (row < square_size)
+	while (row < max)
 	{
 		col = 0;
-		while (col < square_size)
+		while (col < max)
 		{
 			if (board[row][col] != 0)
 				ft_putchar(board[row][col] + 'A' - 1);
