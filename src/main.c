@@ -52,6 +52,8 @@ int		main(int argc, char **argv)
 	int		success;
 	int		max;
 
+	if (!ft_isvalid(argc, argv[1]))
+		return (0);
 	tetrs = ft_handel_input(argv[1]);
 	if (!tetrs)
 	{

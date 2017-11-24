@@ -16,12 +16,8 @@ void	ft_errormsg(int msg)
 {
 	if (msg == 0)
 		ft_putstr("error\n");
-	if (msg == 1)
-		ft_putstr_fd("Error when opening the file", 2);
-	if (msg == 2)
-		ft_putstr_fd("The file is too large", 2);
 	if (msg == 3)
-		ft_putstr_fd("Usage : ./fillit source_file", 2);
+		ft_putstr_fd("Usage : ./fillit source_file\n", 2);
 }
 
 char	*ft_read_file(char *file)
