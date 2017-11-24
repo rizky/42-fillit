@@ -20,24 +20,17 @@
 
 #define BUF_SIZE 600
 
-int		ft_validfile(char *filestr);
-int		ft_syntaxcheck(const char *bf);
-
-void	print_board(int **board, int max);
-
-int		arrange_tetrs(int ***board, char **tetrs, int index, int max);
-
-int		**init_board(int size);
-int		*init_array(void);
-
+void	ft_print_board(int **board, int max);
 void	ft_errormsg(int msg);
-char	*read_file(char *file);
-int		count_tetrs(char *str);
+void	ft_put_tetr(int ***board, char *tetr, int *loc, int val);
+void	ft_rem_tetr(int ***board, int val, int max);
+int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max);
+int		ft_count_tetrs(char *str);
+int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max);
+int		ft_is_tetr_valid(char *str);
+int		*ft_init_array(void);
+int		**ft_init_board(int size);
+char	*ft_read_file(char *file);
+char	*ft_tetrs_decoder(char *str);
 
-char	*tetrs_decoder(char *str);
-
-int		is_put_tetr(int ***board, char *tetr, int *loc, int max);
-void	put_tetr(int ***board, char *tetr, int *loc, int val);
-void	rem_tetr(int ***board, int val, int max);
-int		is_tetr_valid(char *str);
 #endif

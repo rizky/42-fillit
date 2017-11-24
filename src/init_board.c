@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   init_board.c                                       :+:      :+:    :+:   */
+/*   ft_init_board.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-int		**init_board(int size)
+int		**ft_init_board(int size)
 {
 	int **board;
 	int i;
@@ -35,7 +35,7 @@ int		**init_board(int size)
 	return (board);
 }
 
-int		*init_array(void)
+int		*ft_init_array(void)
 {
 	int i;
 	int *arr;

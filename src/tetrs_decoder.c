@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tetrs_decoder.c                                    :+:      :+:    :+:   */
+/*   ft_tetrs_decoder.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rnugroho <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -20,6 +20,7 @@ int		is_one_solution(int sol[19])
 
 	i = 0;
 	max = 0;
+	index = 0;
 	while (i < 19)
 	{
 		if (max < sol[i])
@@ -85,7 +86,7 @@ char	*decode(char *str, int *sol, int *offset, const char tetrs[19][5])
 	return (ft_strdup(tetrs[is_one_solution(sol)]));
 }
 
-char	*tetrs_decoder(char *str)
+char	*ft_tetrs_decoder(char *str)
 {
 	const char	tetrs[19][5] = {
 	">>>", "v<<", ">>v", "><v<", ">v>", "v<>>", ">v^>", "v^>>", "v>>",
@@ -95,9 +96,9 @@ char	*tetrs_decoder(char *str)
 	int			*sol;
 	int			*offset;
 	
-	if (!is_tetr_valid(str))
+	if (!ft_is_tetr_valid(str))
 		return (NULL);
-	sol = init_array();
-	offset = init_array();
+	sol = ft_init_array();
+	offset = ft_init_array();
 	return (decode(str, sol, offset, tetrs));
 }

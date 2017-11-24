@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-int		is_put_tetr(int ***board, char *tetr, int *loc, int max)
+int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max)
 {
 	int i;
 	int row;
@@ -41,7 +41,7 @@ int		is_put_tetr(int ***board, char *tetr, int *loc, int max)
 	return (1);
 }
 
-void	put_tetr(int ***board, char *tetr, int *loc, int val)
+void	ft_put_tetr(int ***board, char *tetr, int *loc, int val)
 {
 	int i;
 	int row;
@@ -66,7 +66,7 @@ void	put_tetr(int ***board, char *tetr, int *loc, int val)
 	}
 }
 
-void	rem_tetr(int ***board, int val, int max)
+void	ft_rem_tetr(int ***board, int val, int max)
 {
 	int i;
 	int j;
@@ -86,7 +86,7 @@ void	rem_tetr(int ***board, int val, int max)
 	}
 }
 
-int		is_tetr_valid(char *str)
+int		ft_is_tetr_valid(char *str)
 {
 	int nblock;
 	int i;
