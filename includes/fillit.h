@@ -25,7 +25,6 @@ void	ft_errormsg(int msg);
 void	ft_put_tetr(int ***board, char *tetr, int *loc, int val);
 void	ft_rem_tetr(int ***board, int val, int max);
 int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max);
-int		ft_count_tetrs(char *str);
 int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max);
 int		ft_is_tetr_valid(char *str);
 int		*ft_init_array(void);
@@ -36,4 +35,5 @@ char	*ft_tetrs_decoder(char *str);
 int		*ft_init_loc(int *loc);
 int		*ft_inc_loc(int *loc, int max);
 char	**ft_handel_input(char *argv);
+int		ft_checkfile(char *str);
 #endif

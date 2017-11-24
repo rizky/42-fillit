@@ -43,6 +43,14 @@ char	*ft_read_file(char *file)
 	return (output);
 }
 
+int		ft_count_tetrs(char *str)
+{
+	if (str != NULL)
+		return ((int)((ft_strlen(str) + 1) / 21));
+	else
+		return (0);
+}
+
 char	**ft_handel_input(char *argv)
 {
 	char	*str;

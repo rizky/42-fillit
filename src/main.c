@@ -12,27 +12,38 @@
 
 #include "../includes/fillit.h"
 
-int		ft_count_tetrs(char *str)
+int		ft_checkgrid(char *str)
 {
-	if (str != NULL)
-		return ((int)((ft_strlen(str) + 1) / 21));
-	else
-		return (0);
+	int i;
+
+	i = 0;
+	while (str[i] && i < 20)
+	{
+		if ((i + 1) % 5 == 0 && str[i] != '\n' && i != 0)
+			return (0);
+		if ((i + 1) % 5 != 0 && str[i] != '.' && str[i] != '#')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
-int		ft_isvalid(int argc, char *argv)
+char	**ft_process_input(int argc, char *str)
 {
+	char	**tetrs;
+
 	if (argc != 2)
 	{
 		ft_errormsg(3);
 		return (0);
 	}
-	if (ft_strlen(argv) == 0)
+	tetrs = ft_handel_input(str);
+	if (tetrs == NULL)
 	{
 		ft_errormsg(0);
 		return (0);
 	}
-	return (1);
+	return (tetrs);
 }
 
 int		main(int argc, char **argv)
@@ -42,14 +53,9 @@ int		main(int argc, char **argv)
 	int		success;
 	int		max;
 
-	if (!ft_isvalid(argc, argv[1]))
-		return (0);
-	tetrs = ft_handel_input(argv[1]);
+	tetrs = ft_process_input(argc, argv[1]);
 	if (!tetrs)
-	{
-		ft_errormsg(0);
 		return (0);
-	}
 	max = 2;
 	success = 0;
 	while (success == 0)
