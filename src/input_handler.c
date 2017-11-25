@@ -76,6 +76,6 @@ char	**ft_handel_input(char *str)
 		offset = offset + 21;
 		i++;
 	}
-	tetrs[ft_count_tetrs(str)] = 0;
+	tetrs[cnt_tetrs] = 0;
 	return (tetrs);
 }
