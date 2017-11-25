@@ -17,7 +17,7 @@ void	ft_errormsg(int msg)
 	if (msg == 0)
 		ft_putstr("error\n");
 	if (msg == 3)
-		ft_putstr_fd("Usage : ./fillit source_file\n", 2);
+		ft_putstr_fd("usage : ./fillit source_file\n", 2);
 }
 
 char	*ft_read_file(char *file)
@@ -29,10 +29,7 @@ char	*ft_read_file(char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-	{
-		ft_errormsg(0);
 		return (NULL);
-	}
 	if (!(buffer = (char*)malloc(sizeof(*buffer) * (BUF_SIZE + 1))))
 		return (NULL);
 	ret = read(fd, buffer, BUF_SIZE);

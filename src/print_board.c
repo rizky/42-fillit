@@ -32,4 +32,5 @@ void	ft_print_board(int **board, int max)
 		ft_putchar('\n');
 		row++;
 	}
+	ft_putchar('\n');
 }

@@ -64,6 +64,11 @@ char	**ft_process_input(int argc, char *argv)
 		return (0);
 	}
 	str = ft_read_file(argv);
+	if (!str)
+	{
+		ft_errormsg(0);
+		return (0);
+	}
 	if (ft_checkfile(str) == 0)
 	{
 		ft_errormsg(0);
@@ -98,6 +103,5 @@ int		main(int argc, char **argv)
 			ft_print_board(board, max);
 		max++;
 	}
-	ft_putchar('\n');
 	return (0);
 }
