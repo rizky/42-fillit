@@ -12,7 +12,7 @@
 
 #include "../includes/fillit.h"
 
-int		is_one_solution(int sol[19])
+int		ft_is_one_solution(int sol[19])
 {
 	int i;
 	int	max;
@@ -36,7 +36,7 @@ int		is_one_solution(int sol[19])
 		return (index);
 }
 
-int		check_shape(int *offset_i, char tetr, char *ptr, char *str)
+int		ft_check_shape(int *offset_i, char tetr, char *ptr, char *str)
 {
 	int sol_i;
 
@@ -60,7 +60,7 @@ int		check_shape(int *offset_i, char tetr, char *ptr, char *str)
 	return (sol_i);
 }
 
-char	*decode(char *str, int *sol, int *offset, const char tetrs[19][5])
+char	*ft_decode(char *str, int *sol, int *offset, const char tetrs[19][5])
 {
 	int			i;
 	int			c;
@@ -70,20 +70,20 @@ char	*decode(char *str, int *sol, int *offset, const char tetrs[19][5])
 	ptr = str;
 	while (*ptr != '#' && *ptr != '\0')
 		ptr++;
-	while (is_one_solution(sol) == -1 && c < 5)
+	while (ft_is_one_solution(sol) == -1 && c < 5)
 	{
 		i = 0;
 		while (i < 19)
 		{
 			if (sol[i] == 0)
-				sol[i] = check_shape(&(offset[i]), tetrs[i][c], ptr, str);
+				sol[i] = ft_check_shape(&(offset[i]), tetrs[i][c], ptr, str);
 			i++;
 		}
 		c++;
 	}
-	if (is_one_solution(sol) == -1)
+	if (ft_is_one_solution(sol) == -1)
 		return (NULL);
-	return (ft_strdup(tetrs[is_one_solution(sol)]));
+	return (ft_strdup(tetrs[ft_is_one_solution(sol)]));
 }
 
 char	*ft_tetrs_decoder(char *str)
@@ -100,5 +100,5 @@ char	*ft_tetrs_decoder(char *str)
 		return (NULL);
 	sol = ft_init_array();
 	offset = ft_init_array();
-	return (decode(str, sol, offset, tetrs));
+	return (ft_decode(str, sol, offset, tetrs));
 }

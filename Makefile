@@ -29,34 +29,34 @@ OBJDIR= ./obj/
 all: $(NAME)
 
 obj:
-	mkdir -p $(OBJDIR)
+	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-	# $(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
-	$(CC) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+#	$(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+	@$(CC) $(LIBINC) -I $(INCDIR) -o $@ -c $<
 
 libft: $(LIBFT)
 
 $(LIBFT):
-	make -C ./libft
+	@make -C ./libft
 
 $(NAME): obj libft $(OBJ) 
-	$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
+	@$(CC) $(LIBLINK) -o $(NAME) $(OBJ)
 
 debug: obj libft $(OBJ) 
-	$(CC) $(LIBLINK) -g $(SRCDIR)*.c
+	@$(CC) $(LIBLINK) -g $(SRCDIR)*.c
 
 remlib:
-	rm -rf $(LIBFT)
+	@rm -rf $(LIBFT)
 
 remoblib:
-	make fclean -C ./libft/
+	@make fclean -C ./libft/
 
 clean: remoblib
-	rm -rf $(OBJDIR)
+	@rm -rf $(OBJDIR)
 
 fclean: clean remlib
-	rm -rf $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
@@ -77,5 +77,5 @@ run-debug: debug
 	lldb a.out
 
 run: re
-	# ./fillit tests/correct_file/valid_9
+#	./fillit tests/correct_file/valid_9
 	./fillit tests/correct_file/valid_13

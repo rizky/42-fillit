@@ -1,6 +1,6 @@
 Algorithm:
 
-[✔] Try max square from 2, until it can fit all the tetrs
+[✅] Try max square from 2, until it can fit all the tetrs
 
 Result:
 
@@ -101,12 +101,12 @@ Commands
 
 Test Case
 
--[✔] bad_tetrs0
--[✔] bad_tetrs1
--[x] bad_tetrs4
--[✔] ok_tetrs0
--[✔] ok_tetrs1
--[✔] ok_tetrs2
--[✔] ok_tetrs3
+-[✅] bad_tetrs0
+-[✅] bad_tetrs1
+-[❌] bad_tetrs4
+-[✅] ok_tetrs0
+-[✅] ok_tetrs1
+-[✅] ok_tetrs2
+-[✅] ok_tetrs3
 
 * Check if the char only # and .

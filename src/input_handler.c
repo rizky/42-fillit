@@ -53,20 +53,25 @@ char	**ft_handel_input(char *str)
 	char	**tetrs;
 	int		i;
 	int		offset;
+	int		cnt_tetrs;
 
 	i = 0;
 	offset = 0;
-	if (ft_count_tetrs(str) == 0)
+	cnt_tetrs = ft_count_tetrs(str);
+	if (cnt_tetrs == 0)
 		return (0);
-	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
-	while (i < ft_count_tetrs(str))
+	tetrs = (char **)ft_memalloc(sizeof(char*) * (cnt_tetrs + 1));
+	while (i < cnt_tetrs)
 	{
 		tetrs[i] = ft_tetrs_decoder(str + offset);
 		if (tetrs[i] == NULL)
+		{
+			ft_memdel((void **) tetrs); //TODO: Added free here!
 			return (0);
+		}
 		offset = offset + 21;
 		i++;
 	}
-	tetrs[ft_count_tetrs(str)] = 0;
+	tetrs[cnt_tetrs] = 0;
 	return (tetrs);
 }

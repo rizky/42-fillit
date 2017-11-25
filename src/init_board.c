@@ -19,7 +19,6 @@ int		**ft_init_board(int size)
 	int j;
 
 	i = 0;
-	j = 0;
 	board = (int **)malloc(sizeof(*board) * size);
 	while (i < size)
 	{
@@ -40,13 +39,10 @@ int		*ft_init_array(void)
 	int i;
 	int *arr;
 
-	i = 0;
+	i = -1;
 	arr = (int*)malloc(sizeof(int) * 19);
-	while (i < 19)
-	{
+	while (++i < 19)
 		arr[i] = 0;
-		i++;
-	}
 	return (arr);
 }
 

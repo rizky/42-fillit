@@ -28,18 +28,20 @@ int		ft_checkgrid(char *str)
 	return (1);
 }
 
-int	ft_checkfile(char *str)
+int		ft_checkfile(char *str)
 {
-	int i;
+	int		i;
+	size_t	len;
 
-	if ((ft_strlen(str) + 1) % 21 != 0)
+	len = ft_strlen(str);
+	if ((len + 1) % 21 != 0)
 		return (0);
-	if (ft_strlen(str) > 550)
+	if (len > 550)
 		return (0);
 	i = 0;
 	while (ft_checkgrid(&str[i]))
 	{
-		if (i + 20 == ft_strlen(str))
+		if (i + 20 == len)
 			return (1);
 		i = i + 20;
 		if (str[i] != '\n')
@@ -48,7 +50,7 @@ int	ft_checkfile(char *str)
 		}
 		i++;
 	}
-	if (i == ft_strlen(str))
+	if (i == len)
 		return (1);
 	return (0);
 }
@@ -72,12 +74,15 @@ char	**ft_process_input(int argc, char *argv)
 	if (ft_checkfile(str) == 0)
 	{
 		ft_errormsg(0);
+		free(str);
 		return (0);
 	}
 	tetrs = ft_handel_input(str);
+	free(str);
 	if (tetrs == NULL)
 	{
 		ft_errormsg(0);
+		ft_memdel((void **) tetrs);
 		return (0);
 	}
 	return (tetrs);
@@ -102,6 +107,8 @@ int		main(int argc, char **argv)
 		if (success)
 			ft_print_board(board, max);
 		max++;
+		ft_memdel((void **) board);
 	}
+	ft_memdel((void **) tetrs);
 	return (0);
 }
