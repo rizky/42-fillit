@@ -17,8 +17,8 @@ OBJ = $(SRC:.c=.o)
 all: $(NAME)
 
 $(NAME):
-	$(CC) -c $(CFLAGS) $(SRC) $(HEADERS)
-	ar rc $(NAME) $(OBJ)
+	@$(CC) -c $(CFLAGS) $(SRC) $(HEADERS)
+	@ar rc $(NAME) $(OBJ)
 
 clean:
 	@/bin/rm -f $(OBJ)
