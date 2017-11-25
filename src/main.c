@@ -69,12 +69,15 @@ char	**ft_process_input(int argc, char *argv)
 	if (ft_checkfile(str) == 0)
 	{
 		ft_errormsg(0);
+		free(str);
 		return (0);
 	}
 	tetrs = ft_handel_input(str);
+	free(str);
 	if (tetrs == NULL)
 	{
 		ft_errormsg(0);
+		ft_memdel((void **) tetrs);
 		return (0);
 	}
 	return (tetrs);
@@ -99,7 +102,9 @@ int		main(int argc, char **argv)
 		if (success)
 			ft_print_board(board, max);
 		max++;
+		ft_memdel((void **) board);
 	}
+	ft_memdel((void **) tetrs);
 	ft_putchar('\n');
 	return (0);
 }
