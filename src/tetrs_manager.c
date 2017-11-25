@@ -12,13 +12,12 @@
 
 #include "../includes/fillit.h"
 
-size_t	g_tetr_len;
-
 int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max)
 {
 	int		i;
 	int		row;
 	int		col;
+	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];
@@ -48,6 +47,7 @@ void	ft_put_tetr(int ***board, char *tetr, int *loc, int val)
 	int		i;
 	int		row;
 	int		col;
+	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];

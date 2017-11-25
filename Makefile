@@ -32,8 +32,7 @@ obj:
 	@mkdir -p $(OBJDIR)
 
 $(OBJDIR)%.o:$(SRCDIR)%.c
-#	$(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
-	@$(CC) $(LIBINC) -I $(INCDIR) -o $@ -c $<
+	@$(CC) $(CFLAGS) $(LIBINC) -I $(INCDIR) -o $@ -c $<
 
 libft: $(LIBFT)
 
