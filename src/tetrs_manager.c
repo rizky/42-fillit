@@ -72,7 +72,6 @@ void	ft_rem_tetr(int ***board, int val, int max)
 	int j;
 
 	i = 0;
-	j = 0;
 	while (i < max)
 	{
 		j = 0;
