@@ -20,6 +20,8 @@
 
 # define BUF_SIZE 600
 
+int		g_tetr_len;
+
 void	ft_print_board(int **board, int max);
 void	ft_errormsg(int msg);
 void	ft_put_tetr(int ***board, char *tetr, int *loc, int val);
@@ -34,10 +36,10 @@ int		ft_tetrlen(char **tetrs);
 int		ft_count_tetrs(char *str);
 int		ft_is_one_solution(int sol[19]);
 int		ft_check_shape(int *offset_i, char tetr, char *ptr, char *str);
-char	*ft_decode(char *str, int *sol, int *offset, const char tetrs[19][5]);
 int		*ft_init_array(void);
 int		*ft_init_loc(int *loc);
 int		*ft_inc_loc(int *loc, int max);
+char	*ft_decode(char *str, int *sol, int *offset, const char tetrs[19][5]);
 char	*ft_read_file(char *file);
 char	*ft_tetrs_decoder(char *str);
 char	**ft_handel_input(char *str);

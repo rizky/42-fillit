@@ -17,14 +17,13 @@ int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max)
 	int		i;
 	int		row;
 	int		col;
-	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];
 	i = -1;
 	if ((*board)[row][col] != 0)
 		return (0);
-	g_tetr_len = ft_strlen(tetr);
+	g_tetr_len = (int)ft_strlen(tetr);
 	while (++i < g_tetr_len)
 	{
 		if (tetr[i] == '>')
@@ -47,13 +46,12 @@ void	ft_put_tetr(int ***board, char *tetr, int *loc, int val)
 	int		i;
 	int		row;
 	int		col;
-	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];
 	i = 0;
 	(*board)[row][col] = val;
-	g_tetr_len = ft_strlen(tetr);
+	g_tetr_len = (int)ft_strlen(tetr);
 	while (i < g_tetr_len)
 	{
 		if (tetr[i] == '>')

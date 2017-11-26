@@ -30,7 +30,7 @@ int		ft_checkgrid(char *str)
 
 int		ft_checkfile(char *str)
 {
-	int		i;
+	size_t	i;
 	size_t	len;
 
 	len = ft_strlen(str);
@@ -55,17 +55,23 @@ int		ft_checkfile(char *str)
 	return (0);
 }
 
+char	*ft_checkargc(int argc, char *argv)  //TODO: This one
+{
+	if (argc != 2)
+	{
+		ft_errormsg(3);
+		return (NULL);
+	}
+	else
+		return (ft_read_file(argv));
+}
+
 char	**ft_process_input(int argc, char *argv)
 {
 	char	**tetrs;
 	char	*str;
 
-	if (argc != 2)
-	{
-		ft_errormsg(3);
-		return (0);
-	}
-	str = ft_read_file(argv);
+	str = ft_checkargc(argc, argv); //TODO: I've created a new function since this one has 29 lines!! (see ft_checkargc)
 	if (!str)
 	{
 		ft_errormsg(0);
@@ -82,7 +88,7 @@ char	**ft_process_input(int argc, char *argv)
 	if (tetrs == NULL)
 	{
 		ft_errormsg(0);
-		ft_memdel((void **) tetrs);
+		ft_memdel((void **)tetrs);
 		return (0);
 	}
 	return (tetrs);
@@ -107,8 +113,8 @@ int		main(int argc, char **argv)
 		if (success)
 			ft_print_board(board, max);
 		max++;
-		ft_memdel((void **) board);
+		ft_memdel((void **)board);
 	}
-	ft_memdel((void **) tetrs);
+	ft_memdel((void **)tetrs);
 	return (0);
 }
