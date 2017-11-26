@@ -30,7 +30,6 @@ int		ft_is_tetr_valid(char *str);
 int		ft_checkfile(char *str);
 int		ft_checkgrid(char *str);
 int		ft_find_loc(int ***board, char *tetr, int **loc, int max);
-int		ft_is_exist(int **board, int index, int max);
 int		ft_tetrlen(char **tetrs);
 int		ft_count_tetrs(char *str);
 int		ft_is_one_solution(int sol[19]);

@@ -28,26 +28,6 @@ int		ft_find_loc(int ***board, char *tetr, int **loc, int max)
 	return (0);
 }
 
-int		ft_is_exist(int **board, int index, int max)
-{
-	int i;
-	int j;
-
-	i = 0;
-	while (i < max)
-	{
-		j = 0;
-		while (j < max)
-		{
-			if (board[i][j] == index)
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	return (0);
-}
-
 int		ft_tetrlen(char **tetrs)
 {
 	int len;
@@ -68,14 +48,11 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 	loc = ft_init_loc(loc);
 	while (loc[0] < max)
 	{
-		if (!ft_is_exist((*board), index + 1, max) &&
-		ft_find_loc(&(*board), tetrs[index], &loc, max))
+		if (ft_find_loc(&(*board), tetrs[index], &loc, max))
 		{
 			ft_put_tetr(&(*board), tetrs[index], loc, index + 1);
 			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
-			{
 				return (1);
-			}
 			ft_rem_tetr(&(*board), index + 1, max);
 		}
 		loc = ft_inc_loc(loc, max);
