@@ -73,9 +73,7 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 		{
 			ft_put_tetr(&(*board), tetrs[index], loc, index + 1);
 			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
-			{
 				return (1);
-			}
 			ft_rem_tetr(&(*board), index + 1, max);
 		}
 		loc = ft_inc_loc(loc, max);
