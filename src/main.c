@@ -31,7 +31,7 @@ int		ft_checkgrid(char *str)
 int		ft_checkfile(char *str)
 {
 	int		i;
-	int		len;
+	size_t	len;
 
 	len = ft_strlen(str);
 	if ((len + 1) % 21 != 0)
@@ -96,7 +96,7 @@ int		main(int argc, char **argv)
 	int		max;
 
 	tetrs = ft_process_input(argc, argv[1]);
-	if (tetrs == NULL)
+	if (!tetrs)
 		return (0);
 	max = 2;
 	success = 0;
