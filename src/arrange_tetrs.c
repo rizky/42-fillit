@@ -18,12 +18,7 @@ int		ft_find_loc(int ***board, char *tetr, int **loc, int max)
 	{
 		if (ft_is_put_tetr(&(*board), tetr, (*loc), max))
 			return (1);
-		(*loc)[1]++;
-		if ((*loc)[1] == max)
-		{
-			(*loc)[0]++;
-			(*loc)[1] = 0;
-		}
+		(*loc) = ft_inc_loc((*loc), max);
 	}
 	return (0);
 }

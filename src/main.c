@@ -31,7 +31,7 @@ int		ft_checkgrid(char *str)
 int		ft_checkfile(char *str)
 {
 	int		i;
-	size_t	len;
+	int		len;
 
 	len = ft_strlen(str);
 	if ((len + 1) % 21 != 0)
