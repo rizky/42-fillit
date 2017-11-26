@@ -18,18 +18,14 @@ int		**ft_init_board(int size)
 	int i;
 	int j;
 
-	i = 0;
+	i = -1;
 	board = (int **)malloc(sizeof(*board) * size);
-	while (i < size)
+	while (++i < size)
 	{
-		j = 0;
+		j = -1;
 		board[i] = (int *)malloc(sizeof(**board) * size);
-		while (j < size)
-		{
+		while (++j < size)
 			board[i][j] = 0;
-			j++;
-		}
-		i++;
 	}
 	return (board);
 }
