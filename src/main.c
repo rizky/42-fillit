@@ -60,7 +60,7 @@ char	*ft_checkargc(int argc, char *argv)  //TODO: This one
 	if (argc != 2)
 	{
 		ft_errormsg(3);
-		return (NULL);
+		exit (0);
 	}
 	else
 		return (ft_read_file(argv));
