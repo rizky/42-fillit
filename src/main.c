@@ -55,7 +55,7 @@ int		ft_checkfile(char *str)
 	return (0);
 }
 
-char	*ft_checkargc(int argc, char *argv)  //TODO: This one
+char	*ft_checkargc(int argc, char *argv)
 {
 	if (argc != 2)
 	{
@@ -71,7 +71,7 @@ char	**ft_process_input(int argc, char *argv)
 	char	**tetrs;
 	char	*str;
 
-	str = ft_checkargc(argc, argv); //TODO: I've created a new function since this one has 29 lines!! (see ft_checkargc)
+	str = ft_checkargc(argc, argv);
 	if (!str)
 	{
 		ft_errormsg(0);

@@ -105,6 +105,11 @@ Test Case
 
 * Check if the char only # and .
 
+
+__Function with free__
+
+- arrange_tetrs.c
+
 ```C
 int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 {
@@ -127,5 +132,80 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 	}
 	free(loc); //TODO: Added free here too
 	return (0);
+}
+```
+
+- input_handler.c
+
+```C
+char	**ft_handel_input(char *str)
+{
+	char	**tetrs;
+	int		i;
+	int		offset;
+	int		cnt_tetrs;
+
+	i = 0;
+	offset = 0;
+	cnt_tetrs = ft_count_tetrs(str);
+	if (cnt_tetrs == 0)
+		return (0);
+	tetrs = (char **)ft_memalloc(sizeof(char*) * (cnt_tetrs + 1));
+	while (i < cnt_tetrs)
+	{
+		tetrs[i] = ft_tetrs_decoder(str + offset);
+		if (tetrs[i] == NULL)
+		{
+			ft_memdel((void **)tetrs); //TODO: Added free here!
+			return (0);
+		}
+		offset = offset + 21;
+		i++;
+	}
+	tetrs[cnt_tetrs] = 0;
+	return (tetrs);
+}
+```
+
+- main.c
+
+```C
+char	*ft_checkargc(int argc, char *argv)  //TODO: This one
+{
+	if (argc != 2)
+	{
+		ft_errormsg(3);
+		exit(0);
+	}
+	else
+		return (ft_read_file(argv));
+}
+
+char	**ft_process_input(int argc, char *argv)
+{
+	char	**tetrs;
+	char	*str;
+
+	str = ft_checkargc(argc, argv); //TODO: I've created a new function since this one has 29 lines!! (see ft_checkargc)
+	if (!str)
+	{
+		ft_errormsg(0);
+		return (0);
+	}
+	if (ft_checkfile(str) == 0)
+	{
+		ft_errormsg(0);
+		free(str);
+		return (0);
+	}
+	tetrs = ft_handel_input(str);
+	free(str);
+	if (tetrs == NULL)
+	{
+		ft_errormsg(0);
+		ft_memdel((void **)tetrs);
+		return (0);
+	}
+	return (tetrs);
 }
 ```

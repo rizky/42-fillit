@@ -66,7 +66,7 @@ char	**ft_handel_input(char *str)
 		tetrs[i] = ft_tetrs_decoder(str + offset);
 		if (tetrs[i] == NULL)
 		{
-			ft_memdel((void **)tetrs); //TODO: Added free here!
+			ft_memdel((void **)tetrs);
 			return (0);
 		}
 		offset = offset + 21;

@@ -52,6 +52,6 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 		}
 		loc = ft_inc_loc(loc, max);
 	}
-	free(loc); //TODO: Added free here too
+	free(loc);
 	return (0);
 }
