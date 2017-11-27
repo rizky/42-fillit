@@ -105,8 +105,7 @@ Test Case
 
 * Check if the char only # and .
 
-`
-
+```C
 int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 {
 	int *loc;
@@ -129,5 +128,4 @@ int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
 	free(loc); //TODO: Added free here too
 	return (0);
 }
-
-`
+```
