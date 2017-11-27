@@ -95,12 +95,39 @@ Commands
 
 Test Case
 
--[✅] bad_tetrs0
--[✅] bad_tetrs1
--[❌] bad_tetrs4
--[✅] ok_tetrs0
--[✅] ok_tetrs1
--[✅] ok_tetrs2
--[✅] ok_tetrs3
+- [✅] bad_tetrs0
+- [✅] bad_tetrs1
+- [❌] bad_tetrs4
+- [✅] ok_tetrs0
+- [✅] ok_tetrs1
+- [✅] ok_tetrs2
+- [✅] ok_tetrs3
 
 * Check if the char only # and .
+
+`
+
+int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
+{
+	int *loc;
+
+	if (index == ft_tetrlen(tetrs))
+		return (1);
+	loc = ft_memalloc(sizeof(int) * 2);
+	loc = ft_init_loc(loc);
+	while (loc[0] < max)
+	{
+		if (ft_find_loc(&(*board), tetrs[index], &loc, max))
+		{
+			ft_put_tetr(&(*board), tetrs[index], loc, index + 1);
+			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
+				return (1);
+			ft_rem_tetr(&(*board), index + 1, max);
+		}
+		loc = ft_inc_loc(loc, max);
+	}
+	free(loc); //TODO: Added free here too
+	return (0);
+}
+
+`
