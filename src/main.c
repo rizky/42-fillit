@@ -12,36 +12,85 @@
 
 #include "../includes/fillit.h"
 
-int		ft_count_tetrs(char *str)
+int		ft_checkgrid(char *str)
 {
-	if (str != NULL)
-		return ((int)((ft_strlen(str) + 1) / 21));
-	else
-		return (0);
-}
-
-char	**ft_handel_input(char *argv)
-{
-	char	*str;
-	char	**tetrs;
-	int		i;
-	int		offset;
+	int i;
 
 	i = 0;
-	offset = 0;
-	str = ft_read_file(argv);
-	if (ft_count_tetrs(str) == 0)
-		return (0);
-	tetrs = (char **)ft_memalloc(sizeof(char*) * (ft_count_tetrs(str) + 1));
-	while (i < ft_count_tetrs(str))
+	while (str[i] && i < 20)
 	{
-		tetrs[i] = ft_tetrs_decoder(str + offset);
-		if (tetrs[i] == NULL)
+		if ((i + 1) % 5 == 0 && str[i] != '\n' && i != 0)
 			return (0);
-		offset = offset + 21;
+		if ((i + 1) % 5 != 0 && str[i] != '.' && str[i] != '#')
+			return (0);
 		i++;
 	}
-	tetrs[ft_count_tetrs(str)] = 0;
+	return (1);
+}
+
+int		ft_checkfile(char *str)
+{
+	size_t	i;
+	size_t	len;
+
+	len = ft_strlen(str);
+	if ((len + 1) % 21 != 0)
+		return (0);
+	if (len > 550)
+		return (0);
+	i = 0;
+	while (ft_checkgrid(&str[i]))
+	{
+		if (i + 20 == len)
+			return (1);
+		i = i + 20;
+		if (str[i] != '\n')
+		{
+			return (0);
+		}
+		i++;
+	}
+	if (i == len)
+		return (1);
+	return (0);
+}
+
+char	*ft_checkargc(int argc, char *argv)
+{
+	if (argc != 2)
+	{
+		ft_errormsg(3);
+		exit(0);
+	}
+	else
+		return (ft_read_file(argv));
+}
+
+char	**ft_process_input(int argc, char *argv)
+{
+	char	**tetrs;
+	char	*str;
+
+	str = ft_checkargc(argc, argv);
+	if (!str)
+	{
+		ft_errormsg(0);
+		return (0);
+	}
+	if (ft_checkfile(str) == 0)
+	{
+		ft_errormsg(0);
+		free(str);
+		return (0);
+	}
+	tetrs = ft_handel_input(str);
+	free(str);
+	if (tetrs == NULL)
+	{
+		ft_errormsg(0);
+		ft_memdel((void **)tetrs);
+		return (0);
+	}
 	return (tetrs);
 }
 
@@ -52,14 +101,9 @@ int		main(int argc, char **argv)
 	int		success;
 	int		max;
 
-	if (!ft_isvalid(argc, argv[1]))
-		return (0);
-	tetrs = ft_handel_input(argv[1]);
+	tetrs = ft_process_input(argc, argv[1]);
 	if (!tetrs)
-	{
-		ft_errormsg(0);
 		return (0);
-	}
 	max = 2;
 	success = 0;
 	while (success == 0)
@@ -69,7 +113,8 @@ int		main(int argc, char **argv)
 		if (success)
 			ft_print_board(board, max);
 		max++;
+		ft_memdel((void **)board);
 	}
-	ft_putchar('\n');
+	ft_memdel((void **)tetrs);
 	return (0);
 }

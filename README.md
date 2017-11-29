@@ -1,6 +1,6 @@
 Algorithm:
 
-[✔] Try max square from 2, until it can fit all the tetrs
+[✅] Try max square from 2, until it can fit all the tetrs
 
 Result:
 
@@ -89,24 +89,123 @@ AAABC
 
 ```
 
-_**All function return 1 in case of error**_
-
-- **ft_basicheck**(input bufftetrim) --> check the presence of other char different from (.  #  \n)
-- **ft_validfile**(input pathtofile) --> check if the file is present and readable
-- **ft_linecheck**(input bufftetrim) --> check if the tetriminos block is valid
-
 Commands
 - make re && time ./fillit inputs/tetrs0
 
 
 Test Case
 
--[✔] bad_tetrs0
--[✔] bad_tetrs1
--[x] bad_tetrs4
--[✔] ok_tetrs0
--[✔] ok_tetrs1
--[✔] ok_tetrs2
--[✔] ok_tetrs3
+- [✅] bad_tetrs0
+- [✅] bad_tetrs1
+- [❌] bad_tetrs4
+- [✅] ok_tetrs0
+- [✅] ok_tetrs1
+- [✅] ok_tetrs2
+- [✅] ok_tetrs3
 
 * Check if the char only # and .
+
+
+__Function with free__
+
+- arrange_tetrs.c
+
+```C
+int		ft_arrange_tetrs(int ***board, char **tetrs, int index, int max)
+{
+	int *loc;
+
+	if (index == ft_tetrlen(tetrs))
+		return (1);
+	loc = ft_memalloc(sizeof(int) * 2);
+	loc = ft_init_loc(loc);
+	while (loc[0] < max)
+	{
+		if (ft_find_loc(&(*board), tetrs[index], &loc, max))
+		{
+			ft_put_tetr(&(*board), tetrs[index], loc, index + 1);
+			if (ft_arrange_tetrs(&(*board), tetrs, index + 1, max))
+				return (1);
+			ft_rem_tetr(&(*board), index + 1, max);
+		}
+		loc = ft_inc_loc(loc, max);
+	}
+	free(loc); //TODO: Added free here too
+	return (0);
+}
+```
+
+- input_handler.c
+
+```C
+char	**ft_handel_input(char *str)
+{
+	char	**tetrs;
+	int		i;
+	int		offset;
+	int		cnt_tetrs;
+
+	i = 0;
+	offset = 0;
+	cnt_tetrs = ft_count_tetrs(str);
+	if (cnt_tetrs == 0)
+		return (0);
+	tetrs = (char **)ft_memalloc(sizeof(char*) * (cnt_tetrs + 1));
+	while (i < cnt_tetrs)
+	{
+		tetrs[i] = ft_tetrs_decoder(str + offset);
+		if (tetrs[i] == NULL)
+		{
+			ft_memdel((void **)tetrs); //TODO: Added free here!
+			return (0);
+		}
+		offset = offset + 21;
+		i++;
+	}
+	tetrs[cnt_tetrs] = 0;
+	return (tetrs);
+}
+```
+
+- main.c
+
+```C
+char	*ft_checkargc(int argc, char *argv)  //TODO: This one
+{
+	if (argc != 2)
+	{
+		ft_errormsg(3);
+		exit(0);
+	}
+	else
+		return (ft_read_file(argv));
+}
+
+char	**ft_process_input(int argc, char *argv)
+{
+	char	**tetrs;
+	char	*str;
+
+	str = ft_checkargc(argc, argv); //TODO: I've created a new function since this one has 29 lines!! (see ft_checkargc)
+	if (!str)
+	{
+		ft_errormsg(0);
+		return (0);
+	}
+	if (ft_checkfile(str) == 0)
+	{
+		ft_errormsg(0);
+		free(str);
+		return (0);
+	}
+	tetrs = ft_handel_input(str);
+	free(str);
+	if (tetrs == NULL)
+	{
+		ft_errormsg(0);
+		ft_memdel((void **)tetrs);
+		return (0);
+	}
+	return (tetrs);
+}
+```

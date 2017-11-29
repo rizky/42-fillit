@@ -14,16 +14,16 @@
 
 int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max)
 {
-	int i;
-	int row;
-	int col;
+	int		i;
+	int		row;
+	int		col;
+	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];
-	i = 0;
-	if ((*board)[row][col] != 0)
-		return (0);
-	while (i < ft_strlen(tetr))
+	i = -1;
+	g_tetr_len = (int)ft_strlen(tetr);
+	while (++i < g_tetr_len)
 	{
 		if (tetr[i] == '>')
 			col++;
@@ -34,24 +34,25 @@ int		ft_is_put_tetr(int ***board, char *tetr, int *loc, int max)
 		if (tetr[i] == '^')
 			row--;
 		if (row >= max || col >= max || row < 0 || col < 0
-			|| (*board)[row][col] != 0)
+			|| (*board)[row][col] != 0 || ((*board)[loc[0]][loc[1]] != 0))
 			return (0);
-		i++;
 	}
 	return (1);
 }
 
 void	ft_put_tetr(int ***board, char *tetr, int *loc, int val)
 {
-	int i;
-	int row;
-	int col;
+	int		i;
+	int		row;
+	int		col;
+	int		g_tetr_len;
 
 	row = loc[0];
 	col = loc[1];
 	i = 0;
 	(*board)[row][col] = val;
-	while (i < ft_strlen(tetr))
+	g_tetr_len = (int)ft_strlen(tetr);
+	while (i < g_tetr_len)
 	{
 		if (tetr[i] == '>')
 			col++;
@@ -72,7 +73,6 @@ void	ft_rem_tetr(int ***board, int val, int max)
 	int j;
 
 	i = 0;
-	j = 0;
 	while (i < max)
 	{
 		j = 0;
