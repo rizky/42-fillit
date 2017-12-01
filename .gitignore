@@ -54,7 +54,6 @@ Mkfile.old
 /cmake-build-debug/
 /.idea
 42_fillit
-.vscode
 launch.json
 /OUT
 fillit
